@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+set -e
+
+FILE="$HOME/.nirion/packages/packages.yaml"  # Absolute path to the packages.yaml file
+
+usage() {
+    echo "Usage:"
+    echo "  $0 add <pacman|aur|flatpak> <package>"
+    echo "  $0 remove <pacman|aur|flatpak> <package>"
+    exit 1
+}
+
+[[ $# -ne 3 ]] && usage
+
+ACTION=$1
+SECTION=$2
+PKG=$3
+
+# Ensure YAML file exists
+touch "$FILE"
+
+# Ensure section exists and is a list (remove "null")
+yq -i -y "
+  if (.${SECTION} == null or .${SECTION} | type != \"!!seq\") then
+      .${SECTION} = []
+  else
+      .
+  end
+" "$FILE"
+
+case "$ACTION" in
+    add)
+        yq -i -y "
+          .${SECTION} += [\"${PKG}\"] |
+          .${SECTION} |= unique
+        " "$FILE"
+        echo "Added $PKG to $SECTION"
+        ;;
+    remove)
+        yq -i -y "
+          .${SECTION} -= [\"${PKG}\"] |
+          .${SECTION} = (.${SECTION} | map(select(. != null)))
+        " "$FILE"
+        echo "Removed $PKG from $SECTION"
+        ;;
+    *)
+        usage
+        ;;
+esac
