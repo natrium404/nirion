@@ -51,11 +51,13 @@ LINK_ITEMS=(
 	"config/rofi:$USER_CONFIG_DIR/rofi"
 	"config/swappy:$USER_CONFIG_DIR/swappy"
 	"config/waybar:$USER_CONFIG_DIR/waybar"
+	"config/Thunar:$USER_CONFIG_DIR/Thunar"
 	"config/Kvantum:$USER_CONFIG_DIR/Kvantum"
 	"config/starship.toml:$USER_CONFIG_DIR/starship.toml"
 
 	".zshrc:$HOME/.zshrc"
 	".zshalias:$HOME/.zshalias"
+	".profile:$HOME/.profile"
 
 	# Icons
 	"icons:$HOME/.icons"

@@ -10,7 +10,7 @@ AUTO_YES=false
 
 LOGFILE="$HOME/nirion.log"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SCRIPT_DIR="$(realpath "$SCRIPT_DIR")"  # resolve symlinks just in case
+SCRIPT_DIR="$(realpath "$SCRIPT_DIR")" # resolve symlinks just in case
 
 # Summary tracker
 declare -A SUMMARY_STATUS=(
@@ -72,7 +72,7 @@ done
 CONFIG_DIR="$SCRIPT_DIR/config"
 CONFIG_FILES=(modules.conf paths.conf packages.conf logging.conf user.conf)
 for cfg in "${CONFIG_FILES[@]}"; do
-    [[ -f "$CONFIG_DIR/$cfg" ]] && source "$CONFIG_DIR/$cfg"
+	[[ -f "$CONFIG_DIR/$cfg" ]] && source "$CONFIG_DIR/$cfg"
 done
 
 # ------------------------------------------------------------
@@ -82,9 +82,8 @@ LIB_DIR="$SCRIPT_DIR/lib"
 LIB_FILES=(colors.sh log.sh utils.sh checks.sh prompt.sh)
 
 for lib in "${LIB_FILES[@]}"; do
-    [[ -f "$LIB_DIR/$lib" ]] && source "$LIB_DIR/$lib"
+	[[ -f "$LIB_DIR/$lib" ]] && source "$LIB_DIR/$lib"
 done
-
 
 # ------------------------------------------------------------
 # Preflight checks

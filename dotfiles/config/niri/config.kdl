@@ -161,9 +161,9 @@ binds {
     MOD+W                               { toggle-column-tabbed-display; }
 
     // ─── Screenshots ───
-    CTRL+SHIFT+1                        { screenshot; }
-    CTRL+SHIFT+2                        { screenshot-screen; }
-    CTRL+SHIFT+3                        { screenshot-window; }
+    MOD+SHIFT+PRINT                     { screenshot; }
+    MOD+PRINT                           { screenshot-screen; }
+    MOD+CTRL+SHIFT+PRINT                { screenshot-window; }
 
     // ─── Emergency Escape Key ───
     // Use this when a fullscreen app blocks your keybinds.
@@ -174,6 +174,9 @@ binds {
     CTRL+ALT+DELETE                     { quit; } // Also quits Niri
     MOD+SHIFT+P                         { power-off-monitors; } // Turn off screens (useful for OLED or privacy)
     MOD+O                               repeat=false { toggle-overview; }
+
+    // ─── Windowed (fake/detached) fullscreen ───
+    MOD+CTRL+SHIFT+F { toggle-windowed-fullscreen; }
 }
 
 // ────────────── Startup Applications ──────────────
@@ -184,6 +187,12 @@ binds {
     spawn-sh-at-startup "swww img /usr/share/wallpapers/cachyos-wallpapers/Skyscraper.png" // Set wallpaper
     spawn-sh-at-startup "waybar" // Launch waybar
 
+    // GTK3 and GTK4 THEME
+    spawn-at-startup "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+    spawn-at-startup "gsettings set org.gnome.desktop.interface gtk-theme 'Colloid-Dark'"
+    spawn-at-startup "gsettings set org.gnome.desktop.interface cursor-theme 'WhiteSur-cursors'"
+    spawn-at-startup "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+
     prefer-no-csd // Disable program decorations
     screenshot-path null // Disable screenshot saving
 
@@ -191,7 +200,7 @@ binds {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 
     layout {
-        gaps 16 // Gap between windows
+        gaps 12 // Gap between windows
         center-focused-column "never" // Don’t auto-center focused column
 
         preset-column-widths {
@@ -260,8 +269,31 @@ binds {
     }
 
     window-rule {
-        geometry-corner-radius 8 // Set every window radius to 20
+        geometry-corner-radius 16 // Set every window radius to 20
         clip-to-geometry true
+    }
+
+    // Indicate screencasted windows with red colors.
+    window-rule {
+        match is-window-cast-target=true
+
+        focus-ring {
+            active-color "#f38ba8"
+            inactive-color "#7d0d2d"
+        }
+
+        border {
+            inactive-color "#7d0d2d"
+        }
+
+        shadow {
+            color "#7d0d2d70"
+        }
+
+        tab-indicator {
+            active-color "#f38ba8"
+            inactive-color "#7d0d2d"
+        }
     }
 
 // ────────────── Environment Variables ──────────────
@@ -271,7 +303,7 @@ binds {
         DISPLAY ":1"
         ELECTRON_OZONE_PLATFORM_HINT "auto"
         QT_QPA_PLATFORM "wayland"
-        QT_QPA_PLATFORMTHEME "qt5ct"
+        QT_QPA_PLATFORMTHEME "qt6ct"
         QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
         XDG_SESSION_TYPE "wayland"
         XDG_CURRENT_DESKTOP "niri"
@@ -280,3 +312,11 @@ binds {
     hotkey-overlay {
         skip-at-startup
     }
+
+// ────────────── Cursor Theme ──────────────
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#cursor
+cursor {
+    xcursor-theme "WhiteSur-cursors"
+    xcursor-size 24
+    hide-after-inactive-ms 3000
+}

@@ -28,8 +28,14 @@ setup_log_dir() {
 atomic_symlink() {
 	local src="$1"
 	local dest="$2"
-	if [ -e "$dest" ] || [ -L "$dest" ]; then
-		mv "$dest" "${dest}.backup.$(date +%s)"
+	local backfile
+	if ([ -e "$dest" ] || [ -L "$dest" ]); then
+		if [ $FORCE_RUN ]; then
+			rm -rf "$dest"
+		else
+			mv "$dest" "${dest}.backup.$(date +%s)"
+		fi
 	fi
 	ln -s "$src" "$dest"
+
 }
