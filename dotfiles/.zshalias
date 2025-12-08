@@ -1,0 +1,64 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Aliases
+# ─────────────────────────────────────────────────────────────────────────────
+
+## Compiler
+# MAKEJOBS=$(nproc)
+# alias make="make -j$MAKEJOBS"
+# alias ninja="ninja -j$MAKEJOBS"
+# alias n="ninja"
+
+## System Management
+alias update="sudo pacman -Syu"
+alias fixpacman="sudo rm /var/lib/pacman/db.lck"
+alias rmpkg="sudo pacman -Rsn"
+alias cleanch="sudo pacman -Scc"
+# alias cleanup="sudo pacman -Rsn $(pacman -Qtdq)"
+alias mirror="sudo cachyos-rate-mirrors"
+alias grubup="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+
+## Arch Help
+alias apt="man pacman"
+alias apt-get="man pacman"
+alias please="sudo"
+
+## Info + Debug
+alias jctl="journalctl -p 3 -xb"
+alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
+alias tb="nc termbin.com 9999"
+alias big="expac -H M '%m\t%n' | sort -h | nl"
+alias gitpkg='pacman -Q | grep -i "\-git" | wc -l'
+alias hw='hwinfo --short'
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+
+## File Management
+alias tarnow='tar -acf '
+alias untar='tar -zxvf '
+alias wget='wget -c '
+
+## Navigation
+alias c="clear"
+alias ..='cd ..'
+alias ..2='cd ../..'
+alias ..3='cd ../../..'
+alias ..4='cd ../../../..'
+alias ..5='cd ../../../../..'
+
+## Safer ls with eza
+alias els='eza --icons=always --no-time --no-user --no-permissions --color=always --long -G --git --no-filesize'
+alias ela='eza -a --color=always --group-directories-first --icons'
+alias el='eza -l --color=always --group-directories-first --icons'
+alias et='eza -aT --color=always --group-directories-first --icons'
+alias el.='eza -a | grep -e "^\."'
+
+## Core utils with color
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+
+# Visual Studio Code (wayland)
+alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland'

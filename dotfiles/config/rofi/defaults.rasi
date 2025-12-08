@@ -1,0 +1,19 @@
+* {
+    bg0:    #0E0E10FF;
+    bg1:    #1A1A1EFF;
+    bg2:    #2B2B2FAA;
+    bg3:    #3A3A3EDD;
+
+    fg0:    #B0B0B5;
+    fg1:    #D0D0D5;
+    fg2:    #99999F;
+    fg3:    #5A5A60;
+
+    font:   "Satoshi Medium 12";
+    background-color:   transparent;
+    text-color:         @fg0;
+
+    margin:     0px;
+    padding:    0px;
+    spacing:    0px;
+}

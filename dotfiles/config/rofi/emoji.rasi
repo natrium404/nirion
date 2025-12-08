@@ -1,0 +1,76 @@
+@import "./defaults.rasi"
+
+* {
+    font: "Satoshi Medium 12";
+    text-color: @fg0;
+    background-color: transparent;
+}
+
+window {
+    width: 600;
+    height: 400;
+    border-radius: 20px;
+    background-color: @bg0;
+    padding: 24px;
+}
+
+mainbox {
+    spacing: 12px;
+    padding: 12px;
+}
+
+listview {
+    lines: 4;
+    columns: 6;
+    spacing: 20px;
+}
+
+element {
+    padding: 12px;
+    spacing: 6px;
+    border-radius: 14px;
+    orientation: vertical;
+    background-color: transparent;
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+}
+
+element selected normal,
+element selected active {
+    background-color: @bg2;
+}
+
+inputbar {
+    text-color:         @fg1;
+    background-color:   @bg1;
+    border-color:       @bg3;
+
+    border:             2px;
+    border-radius:      14px;
+
+    padding:            12px 20px;
+    spacing:            12px;
+}
+
+prompt {
+    text-color:         @bg1;
+    margin:             -28px;
+}
+
+entry {
+    placeholder:        "Search...";
+    placeholder-color:  @fg3;
+    text-color:         @fg0;
+}
+
+element-icon {
+    size: 2.5em;
+    horizontal-align: 0.5;
+}
+
+element-text {
+    text-color: @fg3;
+    font: "Satoshi Medium 14";
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+}

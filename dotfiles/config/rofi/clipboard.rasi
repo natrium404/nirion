@@ -1,0 +1,61 @@
+@import "./defaults.rasi"
+
+window {
+    width: 600;
+    height: 400;
+    border-radius: 12px;
+    background-color: @bg0;
+    padding: 12px;
+}
+
+mainbox {
+    padding: 12px;
+    spacing: 8px;
+}
+
+inputbar {
+    text-color:         @fg1;
+    background-color:   @bg1;
+    border-color:       @bg3;
+
+    border:             2px;
+    border-radius:      14px;
+
+    padding:            12px 20px;
+    spacing:            12px;
+}
+
+prompt {
+    text-color:         @bg1;
+    margin:             -28px;
+}
+
+entry {
+    placeholder:        "Search...";
+    placeholder-color:  @fg3;
+    text-color:         @fg0;
+}
+
+listview {
+    lines: 8;
+    columns: 1;
+    spacing: 6px;
+}
+
+element {
+    padding: 8px 16px;
+    spacing: 8px;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+element selected normal,
+element selected active {
+    background-color: @bg2;
+    text-color: @fg1;
+}
+
+element-text {
+    text-color: inherit;
+    vertical-align: 0.5;
+}
