@@ -98,13 +98,13 @@ Each module must define three functions:
 ```bash
 #!/usr/bin/env bash
 
-module_init() {
+<module>_init() {
     # Initial heading for the module
     # This will be logged both in the log file and the terminal
     log STEP "Initializing <MODULE_NAME> module"
 }
 
-module_validate() {
+<module>_validate() {
     # Determines if the module is enabled in modules.conf
     # Example for a "cleanup" module:
     #   In config/modules.conf:
@@ -115,17 +115,19 @@ module_validate() {
     [ "$ENABLE_CLEANUP" = true ]
 }
 
-module_run() {
+<module>_run() {
     # Main logic of the module goes here
     # For example, cleanup, installation, or symlinking tasks
 }
 
-module_summary() {
+<module>_summary() {
     # Add module status to the installer summary
     # Example: log INFO "<MODULE_NAME> module status: ${SUMMARY_STATUS[<module>]}"
 }
 ```
 
+> Change the `<module>` with the module name
+> Module name must be same as the filename
 > ⚠️ All modules **must follow this template** to integrate correctly with the installer framework.
 > The `_init` function logs the start, `_validate` controls whether the module runs, `_run` performs the main tasks, and `_summary` logs the final status.
 
