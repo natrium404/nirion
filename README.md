@@ -1,6 +1,6 @@
 # Nirion
 > Modular, safe, and idempotent config installer for CachyOS user-space setup.
-**NOTE: THIS ONLY WORKS IN CACHYOS NIRI WM**
+**NOTE: THIS ONLY WORKS IN CACHYOS NIRI WM** (cuz i haven't tested it anywhere else and i am dumb)
 
 ---
 
