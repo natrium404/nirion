@@ -8,12 +8,12 @@ DRY_RUN=false
 FORCE_RUN=false
 AUTO_YES=false
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LOGFILE="$HOME/nirion.log"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(realpath "$SCRIPT_DIR")"  # resolve symlinks just in case
 
 # Summary tracker
 declare -A SUMMARY_STATUS=(
-	[dotfiles]="Pending"
 	[packages]="Pending"
 	[paru]="Pending"
 	[zsh]="Pending"

@@ -188,6 +188,7 @@ Examples:
 ./installer.sh -d        # Dry-run mode
 ./installer.sh -fy       # Force + auto-yes
 ./installer.sh           # Interactive mode
+./installer.sh -f        # Foce run if you don't want to keep backup
 ```
 
 ---
