@@ -8,7 +8,6 @@ pacman:
   - bluez
   - bluez-utils
   - brave-bin
-  - cc
   - cliphist
   - cmake
   - cmus
@@ -19,26 +18,28 @@ pacman:
   - flatpak
   - fzf
   - geany
-  - gimp
   - gifski
+  - gimp
+  - gnome-keyring
   - gparted
   - gst-plugin-pipewire
   - gst-plugins-bad
   - gst-plugins-good
   - gst-plugins-ugly
   - inkscape
-  - krita
   - kooha
+  - krita
+  - kwalletmanager
   - lazygit
   - libmtp
-  - libsqlite3-dev
   - lsof
+  - ly
   - meson
   - mpc
   - mpv-mpris
   - mupdf
   - neovim
-  - ngrok
+  - network-manager-applet
   - noto-fonts
   - noto-fonts-extra
   - nwg-look
@@ -52,22 +53,19 @@ pacman:
   - pv
   - python-pip
   - python-pipx
-  - qalculate
   - scrcpy
   - seahorse
+  - shotcut
   - sqlite3
   - syncthing
-  - shotcut
   - tree
   - ttf-iosevka-nerd
   - ttf-jetbrains-mono-nerd
   - v4l2loopback-dkms
-  - vencord
   - viewnior
   - wob
   - yazi
   - zen-browser-bin
-  
 aur:
   - cpu-x
   - google-chrome
@@ -77,6 +75,6 @@ aur:
   - pinta
   - rnote
   - sublime-text-4
-  - visual-studio-code
-
-flatpak: null
+  - visual-studio-code-bin
+  - vencord
+flatpak: []

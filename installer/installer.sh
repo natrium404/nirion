@@ -9,40 +9,38 @@ PARENT_DIR="$(dirname "$SCRIPT_DIR")"
 # Function to check if the folder is inside the base directory
 # ------------------------------------------------------------
 check_folder_within_base_dir() {
-    local folder="$1"
-    local base_dir="$2"
+	local folder="$1"
+	local base_dir="$2"
 
-    # Get absolute paths of folder and base directory
-    local abs_folder
-    abs_folder=$(realpath "$folder")
+	# Get absolute paths of folder and base directory
+	local abs_folder
+	abs_folder=$(realpath "$folder")
 
-    local abs_base_dir
-    abs_base_dir=$(realpath "$base_dir")
+	local abs_base_dir
+	abs_base_dir=$(realpath "$base_dir")
 
-    # Check if the folder is within the base directory
-    if [[ "$abs_folder" != "$abs_base_dir"* ]]; then
-        # Define colors
-        local RED='\033[0;31m'
-        local GREEN='\033[0;32m'
-        local YELLOW='\033[0;33m'
-        local BLUE='\033[0;34m'
-        local RESET='\033[0m'
+	# Check if the folder is within the base directory
+	if [[ "$abs_folder" != "$abs_base_dir"* ]]; then
+		# Define colors
+		local RED='\033[0;31m'
+		local GREEN='\033[0;32m'
+		local YELLOW='\033[0;33m'
+		local BLUE='\033[0;34m'
+		local RESET='\033[0m'
 
-        echo -e "${RED}ERROR:${RESET} The folder '$folder' is not inside '$base_dir'."
-        echo -e "${YELLOW}To fix this, you need to move the parent folder and rename it.${RESET}"
-        echo -e "Run the following command to ${GREEN}move and rename${RESET} the folder:"
-        echo -e "    mv '${BLUE}$PARENT_DIR${RESET}' '${BLUE}$base_dir/${RESET}'"
-        echo ""
-        echo -e "Then, change to the new directory by running:"
-        echo -e "    cd '${BLUE}$base_dir/installer${RESET}'"
-        echo ""
-        echo -e "${YELLOW}After you've moved the folder, you can re-run the script from the new location.${RESET}"
-        echo -e "${BLUE}Thank you for using the installer!${RESET}"
-        exit 1
-    fi
+		echo -e "${RED}ERROR:${RESET} The folder '$folder' is not inside '$base_dir'."
+		echo -e "${YELLOW}To fix this, you need to move the parent folder and rename it.${RESET}"
+		echo -e "Run the following command to ${GREEN}move and rename${RESET} the folder:"
+		echo -e "    mv '${BLUE}$PARENT_DIR${RESET}' '${BLUE}$base_dir/${RESET}'"
+		echo ""
+		echo -e "Then, change to the new directory by running:"
+		echo -e "    cd '${BLUE}$base_dir/installer${RESET}'"
+		echo ""
+		echo -e "${YELLOW}After you've moved the folder, you can re-run the script from the new location.${RESET}"
+		echo -e "${BLUE}Thank you for using the installer!${RESET}"
+		exit 1
+	fi
 }
-
-
 
 # ------------------------------------------------------------
 # Check if the script is in the right folder (inside $HOME/.nirion)

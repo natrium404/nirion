@@ -43,7 +43,7 @@ binds {
     MOD+SPACE                           hotkey-overlay-title="Open App Launcher: wofi" { spawn-sh "wofi"; }
     MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn-sh "firefox"; }
     MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
-    
+
     // Please choose your own file manager
     MOD+E                             hotkey-overlay-title="File Manager: Thunar" { spawn-sh "thunar"; }
 
@@ -107,12 +107,12 @@ binds {
     MOD+WHEELSCROLLUP                   cooldown-ms=150 { focus-workspace-up; }
     MOD+CTRL+WHEELSCROLLDOWN            cooldown-ms=150 { move-column-to-workspace-down; }
     MOD+CTRL+WHEELSCROLLUP              cooldown-ms=150 { move-column-to-workspace-up; }
-    
+
     MOD+SHIFT+J                         cooldown-ms=150 { focus-workspace-down; }
     MOD+SHIFT+K                         cooldown-ms=150 { focus-workspace-up; }
     MOD+CTRL+SHIFT+J                    cooldown-ms=150 { move-column-to-workspace-down; }
     MOD+CTRL+SHIFT+K                    cooldown-ms=150 { move-column-to-workspace-up; }
-    
+
 
     MOD+WHEELSCROLLRIGHT                { focus-column-right; }
     MOD+WHEELSCROLLLEFT                 { focus-column-left; }
@@ -188,10 +188,9 @@ binds {
     spawn-sh-at-startup "waybar" // Launch waybar
 
     // GTK3 and GTK4 THEME
-    spawn-at-startup "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
-    spawn-at-startup "gsettings set org.gnome.desktop.interface gtk-theme 'Colloid-Dark'"
-    spawn-at-startup "gsettings set org.gnome.desktop.interface cursor-theme 'WhiteSur-cursors'"
-    spawn-at-startup "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+    // spawn-at-startup "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+    // spawn-at-startup "gsettings set org.gnome.desktop.interface gtk-theme 'Colloid-Dark'"
+    // spawn-at-startup "gsettings set org.gnome.desktop.interface cursor-theme 'WhiteSur-cursors'"
 
     prefer-no-csd // Disable program decorations
     screenshot-path null // Disable screenshot saving
@@ -303,7 +302,7 @@ binds {
         DISPLAY ":1"
         ELECTRON_OZONE_PLATFORM_HINT "auto"
         QT_QPA_PLATFORM "wayland"
-        QT_QPA_PLATFORMTHEME "qt6ct"
+        QT_QPA_PLATFORMTHEME "gtk3"
         QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
         XDG_SESSION_TYPE "wayland"
         XDG_CURRENT_DESKTOP "niri"
@@ -317,6 +316,6 @@ binds {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#cursor
 cursor {
     xcursor-theme "WhiteSur-cursors"
-    xcursor-size 24
+    xcursor-size 32
     hide-after-inactive-ms 3000
 }

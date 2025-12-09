@@ -69,3 +69,6 @@ source /usr/share/doc/pkgfile/command-not-found.zsh
 
 # Alias file
 source ~/.zshalias
+
+# bun completions
+[ -s "/home/natrium/.bun/_bun" ] && source "/home/natrium/.bun/_bun"

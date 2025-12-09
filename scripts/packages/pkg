@@ -1,16 +1,32 @@
 #!/usr/bin/env bash
 set -e
 
+# Colors for output
+GREEN=$(tput setaf 2)
+RED=$(tput setaf 1)
+YELLOW=$(tput setaf 3)
+RESET=$(tput sgr0)
+
 FILE="$HOME/.nirion/scripts/packages/packages.yaml" # Absolute path to the packages.yaml file
+
+# Icons
+CHECK_ICON="✅"
+CROSS_ICON="❌"
 
 usage() {
   echo "Usage:"
-  echo "  $0 add <pacman|aur|flatpak> <package>"
-  echo "  $0 remove <pacman|aur|flatpak> <package>"
+  echo "  pkg add <pacman|aur|flatpak> <package>"
+  echo "  pkg remove <pacman|aur|flatpak> <package>"
+  echo "  pkg install <pacman|aur|flatpak> <package>"
+  echo "  pkg uninstall <pacman|aur|flatpak> <package>"
+  echo "  pkg install_all <section>"
   exit 1
 }
 
-[[ $# -ne 3 ]] && usage
+# Ensure correct number of arguments
+if [[ $# -lt 2 ]] || ([[ $1 != "install_all" ]] && [[ $# -ne 3 ]]); then
+  usage
+fi
 
 ACTION=$1
 SECTION=$2
@@ -19,31 +35,136 @@ PKG=$3
 # Ensure YAML file exists
 touch "$FILE"
 
-# Ensure section exists and is a list (remove "null")
-yq -i -y "
-  if (.${SECTION} == null or .${SECTION} | type != \"!!seq\") then
-      .${SECTION} = []
-  else
-      .
-  end
-" "$FILE"
+# Install package function with error handling
+install_pkg() {
+  local section="$1"
+  local pkg="$2"
+  local installer="$3"
+  
+  echo -e "${YELLOW}Attempting to install $pkg via $installer...${RESET}"
 
-case "$ACTION" in
-add)
-  yq -i -y "
-          .${SECTION} += [\"${PKG}\"] |
-          .${SECTION} |= unique
-        " "$FILE"
-  echo "Added $PKG to $SECTION"
-  ;;
-remove)
-  yq -i -y "
-          .${SECTION} -= [\"${PKG}\"] |
-          .${SECTION} = (.${SECTION} | map(select(. != null)))
-        " "$FILE"
-  echo "Removed $PKG from $SECTION"
-  ;;
-*)
-  usage
-  ;;
-esac
+  case "$installer" in
+    pacman)
+      if ! sudo pacman -S --noconfirm "$pkg"; then
+        echo -e "${RED}${CROSS_ICON} Failed to install $pkg via pacman. Exiting.${RESET}"
+        exit 1
+      fi
+      ;;
+    aur)
+      if ! paru -S --noconfirm "$pkg"; then
+        echo -e "${RED}${CROSS_ICON} Failed to install $pkg via paru. Exiting.${RESET}"
+        exit 1
+      fi
+      ;;
+    flatpak)
+      if ! flatpak install -y "$pkg"; then
+        echo -e "${RED}${CROSS_ICON} Failed to install $pkg via flatpak. Exiting.${RESET}"
+        exit 1
+      fi
+      ;;
+    *)
+      echo -e "${RED}${CROSS_ICON} Unknown installer: $installer${RESET}"
+      exit 1
+      ;;
+  esac
+  
+  echo -e "${GREEN}${CHECK_ICON} Successfully installed $pkg via $installer.${RESET}"
+  return 0
+}
+
+# Uninstall package function with error handling
+uninstall_pkg() {
+  local section="$1"
+  local pkg="$2"
+  local installer="$3"
+
+  echo -e "${YELLOW}Attempting to uninstall $pkg via $installer...${RESET}"
+
+  case "$installer" in
+    pacman)
+      if ! sudo pacman -Rns --noconfirm "$pkg"; then
+        echo -e "${RED}${CROSS_ICON} Failed to uninstall $pkg via pacman. Exiting.${RESET}"
+        exit 1
+      fi
+      ;;
+    aur)
+      if ! paru -Rns --noconfirm "$pkg"; then
+        echo -e "${RED}${CROSS_ICON} Failed to uninstall $pkg via paru. Exiting.${RESET}"
+        exit 1
+      fi
+      ;;
+    flatpak)
+      if ! flatpak uninstall -y "$pkg"; then
+        echo -e "${RED}${CROSS_ICON} Failed to uninstall $pkg via flatpak. Exiting.${RESET}"
+        exit 1
+      fi
+      ;;
+    *)
+      echo -e "${RED}${CROSS_ICON} Unknown installer: $installer${RESET}"
+      exit 1
+      ;;
+  esac
+  
+  echo -e "${GREEN}${CHECK_ICON} Successfully uninstalled $pkg via $installer.${RESET}"
+  return 0
+}
+
+# Install all packages listed in the section
+install_all() {
+  local section="$1"
+  
+  # Read all packages listed under the section
+  packages=$(yq -r ".${section}[]" "$FILE")
+
+  # Check if the section exists and is not empty
+  if [ -z "$packages" ]; then
+    echo -e "${RED}${CROSS_ICON} No packages found in section $section${RESET}"
+    exit 1
+  fi
+
+  for pkg in $packages; do
+    # Skip package if already installed
+    if pacman -Q "$pkg" &>/dev/null || paru -Q "$pkg" &>/dev/null || flatpak list --app | grep -q "$pkg"; then
+      echo -e "${YELLOW}${CHECK_ICON} $pkg is already installed. Skipping.${RESET}"
+      continue
+    fi
+
+    echo -e "${YELLOW}Installing $pkg...${RESET}"
+    
+    install_pkg "$section" "$pkg" "$section"
+  done
+}
+
+# Manage packages in YAML file
+manage_package() {
+  case "$ACTION" in
+    add)
+      yq -i -y ".${SECTION} += [\"${PKG}\"] | .${SECTION} |= unique" "$FILE"
+      echo -e "${GREEN}${CHECK_ICON} Added $PKG to $SECTION section.${RESET}"
+      ;;
+    remove)
+      yq -i -y ".${SECTION} -= [\"${PKG}\"] | .${SECTION} = (.${SECTION} | map(select(. != null)))" "$FILE"
+      echo -e "${RED}${CROSS_ICON} Removed $PKG from $SECTION section.${RESET}"
+      ;;
+    install)
+      if pacman -Q "$PKG" &>/dev/null || paru -Q "$PKG" &>/dev/null; then
+        echo -e "${YELLOW}${CHECK_ICON} $PKG is already installed.${RESET}"
+      else
+        install_pkg "$SECTION" "$PKG" "$SECTION"
+      fi
+      yq -i -y ".${SECTION} += [\"${PKG}\"] | .${SECTION} |= unique" "$FILE"
+      ;;
+    uninstall)
+      uninstall_pkg "$SECTION" "$PKG" "$SECTION"
+      yq -i -y ".${SECTION} -= [\"${PKG}\"] | .${SECTION} = (.${SECTION} | map(select(. != null)))" "$FILE"
+      ;;
+    install_all)
+      install_all "$SECTION"
+      ;;
+    *)
+      usage
+      ;;
+  esac
+}
+
+manage_package
