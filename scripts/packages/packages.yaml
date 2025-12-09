@@ -46,6 +46,27 @@ pacman:
   - obsidian
   - onlyoffice-bin
   - pipewire
+  - pipewire-alsa
+  - pipewire-pulse
+  - proton-vpn-gtk-app
+  - pv
+  - python-pip
+  - python-pipx
+  - qalculate
+  - scrcpy
+  - seahorse
+  - sqlite3
+  - syncthing
+  - shotcut
+  - tree
+  - ttf-iosevka-nerd
+  - ttf-jetbrains-mono-nerd
+  - v4l2loopback-dkms
+  - vencord
+  - viewnior
+  - wob
+  - yazi
+  - zen-browser-bin
   
 aur:
   - cpu-x
