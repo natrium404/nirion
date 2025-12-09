@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 set -e
 
-FILE="$HOME/.nirion/packages/packages.yaml"  # Absolute path to the packages.yaml file
+FILE="$HOME/.nirion/scripts/packages/packages.yaml" # Absolute path to the packages.yaml file
 
 usage() {
-    echo "Usage:"
-    echo "  $0 add <pacman|aur|flatpak> <package>"
-    echo "  $0 remove <pacman|aur|flatpak> <package>"
-    exit 1
+  echo "Usage:"
+  echo "  $0 add <pacman|aur|flatpak> <package>"
+  echo "  $0 remove <pacman|aur|flatpak> <package>"
+  exit 1
 }
 
 [[ $# -ne 3 ]] && usage
@@ -29,21 +29,21 @@ yq -i -y "
 " "$FILE"
 
 case "$ACTION" in
-    add)
-        yq -i -y "
+add)
+  yq -i -y "
           .${SECTION} += [\"${PKG}\"] |
           .${SECTION} |= unique
         " "$FILE"
-        echo "Added $PKG to $SECTION"
-        ;;
-    remove)
-        yq -i -y "
+  echo "Added $PKG to $SECTION"
+  ;;
+remove)
+  yq -i -y "
           .${SECTION} -= [\"${PKG}\"] |
           .${SECTION} = (.${SECTION} | map(select(. != null)))
         " "$FILE"
-        echo "Removed $PKG from $SECTION"
-        ;;
-    *)
-        usage
-        ;;
+  echo "Removed $PKG from $SECTION"
+  ;;
+*)
+  usage
+  ;;
 esac

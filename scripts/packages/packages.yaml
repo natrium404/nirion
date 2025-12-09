@@ -1,0 +1,61 @@
+pacman:
+  - android-tools
+  - android-udev
+  - archlinux-keyring
+  - aria2
+  - blueman
+  - bluetui
+  - bluez
+  - bluez-utils
+  - brave-bin
+  - cc
+  - cliphist
+  - cmake
+  - cmus
+  - cpio
+  - direnv
+  - eza
+  - file-roller
+  - flatpak
+  - fzf
+  - geany
+  - gimp
+  - gifski
+  - gparted
+  - gst-plugin-pipewire
+  - gst-plugins-bad
+  - gst-plugins-good
+  - gst-plugins-ugly
+  - inkscape
+  - krita
+  - kooha
+  - lazygit
+  - libmtp
+  - libsqlite3-dev
+  - lsof
+  - meson
+  - mpc
+  - mpv-mpris
+  - mupdf
+  - neovim
+  - ngrok
+  - noto-fonts
+  - noto-fonts-extra
+  - nwg-look
+  - obs-studio
+  - obsidian
+  - onlyoffice-bin
+  - pipewire
+  
+aur:
+  - cpu-x
+  - google-chrome
+  - iriunwebcam-bin
+  - luakit
+  - postman
+  - pinta
+  - rnote
+  - sublime-text-4
+  - visual-studio-code
+
+flatpak: null
