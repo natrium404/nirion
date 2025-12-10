@@ -32,6 +32,16 @@ input {
     scale 1 // No scaling (use 2 for HiDPI)
 }
 
+output "HDMI-A-1" {
+    mode "1366x768@59.790"
+    position x=0 y=0
+}
+
+output "eDP-1" {
+    mode "1920x1080@60.052"
+    position x=1366 y=0
+}
+
 // ────────────── Keybindings ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Key-Bindings
 
@@ -41,7 +51,7 @@ binds {
     // ─── Applications ───
     MOD+RETURN                          hotkey-overlay-title="Open Terminal: kitty" { spawn-sh "kitty"; }
     MOD+SPACE                           hotkey-overlay-title="Open App Launcher: wofi" { spawn-sh "wofi"; }
-    MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn-sh "firefox"; }
+    MOD+B                               hotkey-overlay-title="Open Default Browser" { spawn-sh "$BROWSER"; }
     MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
 
     // Please choose your own file manager
@@ -306,6 +316,10 @@ binds {
         QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
         XDG_SESSION_TYPE "wayland"
         XDG_CURRENT_DESKTOP "niri"
+
+        GTK_IM_MODULE "fcitx"
+        QT_IM_MODULE "fcitx"
+        XMODIFIERS "@im=fcitx"
     }
 
     hotkey-overlay {

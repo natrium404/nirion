@@ -14,18 +14,21 @@ pacman:
   - cpio
   - direnv
   - eza
+  - fcitx5
   - file-roller
   - flatpak
   - fzf
   - geany
   - gifski
   - gimp
+  - gnome-characters
   - gnome-keyring
   - gparted
   - gst-plugin-pipewire
   - gst-plugins-bad
   - gst-plugins-good
   - gst-plugins-ugly
+  - gvfs-mtp
   - inkscape
   - kooha
   - krita
@@ -37,6 +40,7 @@ pacman:
   - meson
   - mpc
   - mpv-mpris
+  - mtpfs
   - mupdf
   - neovim
   - network-manager-applet
@@ -49,6 +53,7 @@ pacman:
   - pipewire
   - pipewire-alsa
   - pipewire-pulse
+  - postgresql
   - proton-vpn-gtk-app
   - pv
   - python-pip
@@ -77,4 +82,5 @@ aur:
   - sublime-text-4
   - visual-studio-code-bin
   - vencord
-flatpak: []
+flatpak:
+  - it.mijorus.gearlever
