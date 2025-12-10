@@ -8,6 +8,7 @@ pacman:
   - bluez
   - bluez-utils
   - brave-bin
+  - cava
   - cliphist
   - cmake
   - cmus

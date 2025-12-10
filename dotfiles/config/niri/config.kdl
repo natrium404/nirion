@@ -49,8 +49,9 @@ binds {
     MOD+SHIFT+ESCAPE                     { show-hotkey-overlay; }
 
     // ─── Applications ───
-    MOD+RETURN                          hotkey-overlay-title="Open Terminal: kitty" { spawn-sh "kitty"; }
+    MOD+RETURN                          hotkey-overlay-title="Open Terminal: ghostty" { spawn-sh "ghostty"; }
     MOD+SPACE                           hotkey-overlay-title="Open App Launcher: wofi" { spawn-sh "wofi"; }
+    MOD+D                               hotkey-overlay-title="Open Bemenu: bemenu-run" { spawn-sh "bemenu-run"; }
     MOD+B                               hotkey-overlay-title="Open Default Browser" { spawn-sh "$BROWSER"; }
     MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
 
@@ -187,6 +188,12 @@ binds {
 
     // ─── Windowed (fake/detached) fullscreen ───
     MOD+CTRL+SHIFT+F { toggle-windowed-fullscreen; }
+
+    // ─── CHAMELEOS ACTIONS // Chameleos - a screen annotation tool ───
+    MOD+F1 { spawn "chamel" "toggle"; }
+    MOD+F2 { spawn "chamel" "undo"; }
+    MOD+F3 { spawn "chamel" "clear"; }
+    MOD+F4 { spawn "chamel" "exit"; }
 }
 
 // ────────────── Startup Applications ──────────────
@@ -204,6 +211,7 @@ binds {
 
     prefer-no-csd // Disable program decorations
     screenshot-path null // Disable screenshot saving
+
 
 // ────────────── Layout Settings ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
