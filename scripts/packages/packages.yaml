@@ -59,6 +59,7 @@ pacman:
   - pv
   - python-pip
   - python-pipx
+  - rink
   - scrcpy
   - seahorse
   - shotcut

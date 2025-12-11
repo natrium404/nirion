@@ -50,7 +50,8 @@ binds {
 
     // ─── Applications ───
     MOD+RETURN                          hotkey-overlay-title="Open Terminal: ghostty" { spawn-sh "ghostty"; }
-    MOD+SPACE                           hotkey-overlay-title="Open App Launcher: wofi" { spawn-sh "wofi"; }
+    MOD+SPACE                           hotkey-overlay-title="Open Launcher: anyrun" { spawn-sh "anyrun"; }
+    MOD+SHIFT+SPACE                           hotkey-overlay-title="Open App Launcher: wofi" { spawn-sh "wofi"; }
     MOD+D                               hotkey-overlay-title="Open Bemenu: bemenu-run" { spawn-sh "bemenu-run"; }
     MOD+B                               hotkey-overlay-title="Open Default Browser" { spawn-sh "$BROWSER"; }
     MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
@@ -209,6 +210,10 @@ binds {
     // spawn-at-startup "gsettings set org.gnome.desktop.interface gtk-theme 'Colloid-Dark'"
     // spawn-at-startup "gsettings set org.gnome.desktop.interface cursor-theme 'WhiteSur-cursors'"
 
+    // Clipboard
+    spawn-sh-at-startup "wl-paste --type text --watch cliphist store &"
+    spawn-sh-at-startup "wl-paste --type image --watch cliphist store &"
+
     prefer-no-csd // Disable program decorations
     screenshot-path null // Disable screenshot saving
 
@@ -290,6 +295,13 @@ binds {
         clip-to-geometry true
     }
 
+    window-rule {
+        match app-id=r#"com.clippy.clipboard$"# title="^Clipboard$"
+        open-floating true
+        max-width 600
+        max-height 600
+    }
+
     // Indicate screencasted windows with red colors.
     window-rule {
         match is-window-cast-target=true
@@ -317,7 +329,8 @@ binds {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#environment
 
     environment {
-        DISPLAY ":1"
+        // DISPLAY ":1"
+        DISPLAY null
         ELECTRON_OZONE_PLATFORM_HINT "auto"
         QT_QPA_PLATFORM "wayland"
         QT_QPA_PLATFORMTHEME "gtk3"
@@ -340,4 +353,9 @@ cursor {
     xcursor-theme "WhiteSur-cursors"
     xcursor-size 32
     hide-after-inactive-ms 3000
+}
+
+xwayland-satellite {
+    // off
+    path "xwayland-satellite"
 }
