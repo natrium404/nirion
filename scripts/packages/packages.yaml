@@ -76,13 +76,14 @@ pacman:
 aur:
   - cpu-x
   - google-chrome
+  - ianny-bin
   - iriunwebcam-bin
   - luakit
-  - postman
   - pinta
+  - postman
   - rnote
   - sublime-text-4
-  - visual-studio-code-bin
   - vencord
+  - visual-studio-code-bin
 flatpak:
   - it.mijorus.gearlever

@@ -214,6 +214,9 @@ binds {
     spawn-sh-at-startup "wl-paste --type text --watch cliphist store &"
     spawn-sh-at-startup "wl-paste --type image --watch cliphist store &"
 
+    // Ianny - a desktop utility that tracks your computer usage and reminds you to take breaks.
+    spawn-sh-at-startup "command -v ianny >/dev/null 2>&1 && ianny || exit 0"
+
     prefer-no-csd // Disable program decorations
     screenshot-path null // Disable screenshot saving
 
