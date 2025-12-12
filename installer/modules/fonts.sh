@@ -13,6 +13,9 @@ fonts_run() {
 		run mkdir -p "$FONTS_DIR"
 		run cp -r "$DOTFILES_DIR/fonts/"* "$FONTS_DIR/"
 		log OK "Fonts copied to $FONTS_DIR"
+		log STEP "Caching fonts"
+		run fc-cache -fv
+		log OK "Fonts cached successfully"
 		SUMMARY_STATUS[fonts]="Done"
 	else
 		log WARN "No fonts folder in dotfiles"

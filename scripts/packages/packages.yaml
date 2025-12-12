@@ -47,6 +47,7 @@ pacman:
   - network-manager-applet
   - noto-fonts
   - noto-fonts-extra
+  - ntfs-3g
   - nwg-look
   - obs-studio
   - obsidian

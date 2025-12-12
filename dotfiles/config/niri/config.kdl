@@ -285,6 +285,9 @@ binds {
         }
     }
 
+    workspace "android" {
+        open-on-output "eDP-1"
+    }
 // ────────────── Window Rules ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
 
@@ -303,6 +306,16 @@ binds {
         open-floating true
         max-width 600
         max-height 600
+    }
+
+    // waydroid
+     window-rule {
+        match app-id="Waydroid"
+        open-on-workspace "android"
+        open-maximized-to-edges false
+        open-maximized true
+        // open-floating true
+        // default-floating-position x=20 y=20 relative-to="top-left"
     }
 
     // Indicate screencasted windows with red colors.
