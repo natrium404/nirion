@@ -43,19 +43,48 @@
 # # Empty values are used to reset config keys to default.
 # key =
 #
-# # Some config options have unique syntaxes for their value,
+# # Some config options have unique syntaxes for their value,JetBrainsMono Nerd Font Propo
 # # which is explained in the docs for that config option.
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
 
 # ----x----
-font-family = "JetBrainsMono Nerd Font"
+working-directory = home
+font-family = JetBrainsMono Nerd Font
 font-family-bold = auto
-font-family-bold-italic = auto
 font-family-italic = auto
+font-family-bold-italic = auto
+
 font-size = 10.0
 window-padding-x = 4
 
 # --- keybindgs ---
 # keybind = trigger=action
+
+# Background and transparency settings
+background = #282a36
+
+# Color scheme (Dracula-inspired dark theme)
+foreground = #f8f8f2
+selection-foreground = #ffffff
+selection-background = #44475a
+cursor-color = #f8f8f2
+
+# ANSI Colors (Dracula)
+palette = 0=#21222c
+palette = 1=#ff5555
+palette = 2=#50fa7b
+palette = 3=#f1fa8c
+palette = 4=#bd93f9
+palette = 5=#ff79c6
+palette = 6=#8be9fd
+palette = 7=#f8f8f2
+palette = 8=#6272a4
+palette = 9=#ff6e6e
+palette = 10=#69ff94
+palette = 11=#ffffa5
+palette = 12=#d6acff
+palette = 13=#ff92df
+palette = 14=#a4ffff
+palette = 15=#ffffff

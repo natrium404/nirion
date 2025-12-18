@@ -8,7 +8,7 @@ input {
     keyboard {
         xkb {
             layout "us" // Use the German keyboard layout
-	    options "caps:swapescape" // Swap Caps with Escape
+	        options "caps:swapescape" // Swap Caps with Escape
         }
         numlock // Enable numlock on startup
     }
@@ -32,14 +32,22 @@ input {
     scale 1 // No scaling (use 2 for HiDPI)
 }
 
-output "HDMI-A-1" {
-    mode "1366x768@59.790"
-    position x=0 y=0
-}
+// output "HDMI-A-1" {
+//     mode "1366x768@59.790"
+//     position x=0 y=0
+// }
 
 output "eDP-1" {
     mode "1920x1080@60.052"
-    position x=1366 y=0
+    position x=0 y=0
+}
+
+output "HDMI-A-1" {
+    mode "1280x720@60.000"
+    // mode "1920x1080@60.052"
+
+    position x=1920 y=0
+    // transform "90"
 }
 
 // ────────────── Keybindings ──────────────
@@ -49,9 +57,9 @@ binds {
     MOD+SHIFT+ESCAPE                     { show-hotkey-overlay; }
 
     // ─── Applications ───
-    MOD+RETURN                          hotkey-overlay-title="Open Terminal: ghostty" { spawn-sh "ghostty"; }
+    MOD+RETURN                          hotkey-overlay-title="Open Terminal: kitty" { spawn-sh "kitty"; }
     MOD+SPACE                           hotkey-overlay-title="Open Launcher: anyrun" { spawn-sh "anyrun"; }
-    MOD+SHIFT+SPACE                           hotkey-overlay-title="Open App Launcher: wofi" { spawn-sh "wofi"; }
+    MOD+SHIFT+SPACE                     hotkey-overlay-title="Open App Launcher: wofi" { spawn-sh "wofi"; }
     MOD+D                               hotkey-overlay-title="Open Bemenu: bemenu-run" { spawn-sh "bemenu-run"; }
     MOD+B                               hotkey-overlay-title="Open Default Browser" { spawn-sh "$BROWSER"; }
     MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
@@ -62,14 +70,18 @@ binds {
     // ─── Audio Controls ───
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
-    XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+"; }
-    XF86AudioLowerVolume                allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
-    XF86AudioMute                       allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
-    XF86AudioMicMute                    allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "command -v swayosd-client >/dev/null 2>&1 && pgrep -x swayosd-server >/dev/null && swayosd-client --output-volume raise --max-volume 100 || wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+"; }
+    XF86AudioLowerVolume                allow-when-locked=true { spawn-sh "command -v swayosd-client >/dev/null 2>&1 && pgrep -x swayosd-server >/dev/null && swayosd-client --output-volume lower --max-volume 100 || wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+    XF86AudioMute                       allow-when-locked=true { spawn-sh "command -v swayosd-client >/dev/null 2>&1 && pgrep -x swayosd-server >/dev/null && swayosd-client --output-volume raise --max-volume 100 || wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
     XF86AudioNext                       allow-when-locked=true { spawn-sh "playerctl next"; }
     XF86AudioPause                      allow-when-locked=true { spawn-sh "playerctl play-pause"; }
     XF86AudioPlay                       allow-when-locked=true { spawn-sh "playerctl play-pause"; }
     XF86AudioPrev                       allow-when-locked=true { spawn-sh "playerctl previous"; }
+    
+    // ─── Brightness Controls ───
+    XF86MonBrightnessUp                { spawn-sh "command -v swayosd-client >/dev/null 2>&1 && pgrep -x swayosd-server >/dev/null && swayosd-client --brightness raise || brightnessctl s 5%+"; }
+    XF86MonBrightnessDown                 { spawn-sh "command -v swayosd-client >/dev/null 2>&1 && pgrep -x swayosd-server >/dev/null && swayosd-client --brightness lower || brightnessctl s 5%-"; }
+
 
     // ─── Window Movement and Focus ───
     MOD+Q                               { close-window; }
@@ -191,10 +203,10 @@ binds {
     MOD+CTRL+SHIFT+F { toggle-windowed-fullscreen; }
 
     // ─── CHAMELEOS ACTIONS // Chameleos - a screen annotation tool ───
-    MOD+F1 { spawn "chamel" "toggle"; }
-    MOD+F2 { spawn "chamel" "undo"; }
-    MOD+F3 { spawn "chamel" "clear"; }
-    MOD+F4 { spawn "chamel" "exit"; }
+    MOD+F1 { spawn-sh "command -v chamel >/dev/null 2>&1 && chamel toggle"; }
+    MOD+F2 { spawn-sh "command -v chamel >/dev/null 2>&1 && chamel undo"; }
+    MOD+F3 { spawn-sh "command -v chamel >/dev/null 2>&1 && chamel clear"; }
+    MOD+F4 { spawn-sh "pgrep -x chameleos >/dev/null && chamel exit || chameleos &"; }
 }
 
 // ────────────── Startup Applications ──────────────
@@ -204,6 +216,10 @@ binds {
     spawn-sh-at-startup "swww-daemon" // Wallpaper daemon
     spawn-sh-at-startup "swww img /usr/share/wallpapers/cachyos-wallpapers/Skyscraper.png" // Set wallpaper
     spawn-sh-at-startup "waybar" // Launch waybar
+
+
+    spawn-sh-at-startup "command -v anyrun >/dev/null 2>&1 && anyrun daemon &" // Launch anyrun
+
 
     // GTK3 and GTK4 THEME
     // spawn-at-startup "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
@@ -216,6 +232,10 @@ binds {
 
     // Ianny - a desktop utility that tracks your computer usage and reminds you to take breaks.
     spawn-sh-at-startup "command -v ianny >/dev/null 2>&1 && ianny || exit 0"
+
+    // run swayosd
+    // paru -S swayosd
+    spawn-sh-at-startup "command -v swayosd-server >/dev/null && swayosd-server &"
 
     prefer-no-csd // Disable program decorations
     screenshot-path null // Disable screenshot saving
@@ -285,9 +305,9 @@ binds {
         }
     }
 
-    workspace "android" {
-        open-on-output "eDP-1"
-    }
+    // workspace "android" {
+    //  open-on-output "eDP-1"
+    // }
 // ────────────── Window Rules ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
 
@@ -309,14 +329,14 @@ binds {
     }
 
     // waydroid
-     window-rule {
-        match app-id="Waydroid"
-        open-on-workspace "android"
-        open-maximized-to-edges false
-        open-maximized true
-        // open-floating true
-        // default-floating-position x=20 y=20 relative-to="top-left"
-    }
+    // window-rule {
+    //    match app-id="Waydroid"
+    //    open-on-workspace "android"
+    //    open-maximized-to-edges false
+    //    open-maximized true
+    //    open-floating true
+    //    default-floating-position x=20 y=20 relative-to="top-left"
+    // }
 
     // Indicate screencasted windows with red colors.
     window-rule {
@@ -345,11 +365,11 @@ binds {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#environment
 
     environment {
-        // DISPLAY ":1"
-        DISPLAY null
+        DISPLAY ":1"
+        // DISPLAY null
         ELECTRON_OZONE_PLATFORM_HINT "auto"
         QT_QPA_PLATFORM "wayland"
-        QT_QPA_PLATFORMTHEME "gtk3"
+        QT_QPA_PLATFORMTHEME "qt6ct"
         QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
         XDG_SESSION_TYPE "wayland"
         XDG_CURRENT_DESKTOP "niri"

@@ -1,1 +1,7 @@
 dotfiles/config/geany/session.conf
+dotfiles/config/geany/filedefs
+dotfiles/config/geany/tags
+dotfiles/config/geany/templates
+
+scripts/.cache
+scripts/*.log

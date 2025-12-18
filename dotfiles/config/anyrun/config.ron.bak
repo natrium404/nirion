@@ -7,7 +7,7 @@ Config(
   x: Fraction(0.5),
 
   // The vertical position, works the same as `x`
-  y: Absolute(40),
+  y: Absolute(0.5),
 
   // The width of the runner
   width: Absolute(800),
@@ -32,7 +32,7 @@ Config(
   close_on_click: false,
 
   // Show search results immediately when Anyrun starts
-  show_results_immediately: true,
+  show_results_immediately: false,
 
   // Limit amount of entries shown in total
   max_entries: None,
@@ -48,8 +48,7 @@ Config(
     "libshell.so",
     "libtranslate.so",
     "librink.so",
-    "libwebsearch.so",
-    "libdictionary.so",
+    "libshell.so"
   ],
 
   keybinds: [
@@ -60,6 +59,14 @@ Config(
     Keybind(
       key: "Up",
       action: Up, 
+    ),
+    Keybind(
+      key: "CTRL+N",
+      action: Up, 
+    ),
+    Keybind(
+      key: "Down",
+      action: Down, 
     ),
     Keybind(
       key: "Down",

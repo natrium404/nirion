@@ -44,6 +44,7 @@ LINK_ITEMS=(
 	"config/gtk-3.0:$USER_CONFIG_DIR/gtk-3.0"
 	"config/gtk-4.0:$USER_CONFIG_DIR/gtk-4.0"
 	"config/kitty:$USER_CONFIG_DIR/kitty"
+	"config/ghostty:$USER_CONFIG_DIR/ghostty"
 	"config/mpv:$USER_CONFIG_DIR/mpv"
 	"config/niri:$USER_CONFIG_DIR/niri"
 	"config/qt5ct:$USER_CONFIG_DIR/qt5ct"
@@ -54,6 +55,8 @@ LINK_ITEMS=(
 	"config/Thunar:$USER_CONFIG_DIR/Thunar"
 	"config/Kvantum:$USER_CONFIG_DIR/Kvantum"
 	"config/starship.toml:$USER_CONFIG_DIR/starship.toml"
+	"config/anyrun:$USER_CONFIG_DIR/anyrun"
+	"config/io.github.zefr0x.ianny:$USER_CONFIG_DIR/io.github.zefr0x.ianny"
 
 	".zshrc:$HOME/.zshrc"
 	".zshalias:$HOME/.zshalias"
