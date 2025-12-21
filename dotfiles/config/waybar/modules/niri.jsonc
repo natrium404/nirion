@@ -1,0 +1,23 @@
+{
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "urgent": "",
+      "default": "",
+      "active": "",
+      "visible": ""
+    },
+    "on-scroll-up": "niri msg action focus-workspace-up 1>/dev/null",
+    "on-scroll-down": "niri msg action focus-workspace-down 1>/dev/null",
+    "sort-by-number": true,
+    "active-only": true,
+    "all-outputs": false
+  },
+  "niri/window": {
+    "max-length": 100,
+    "separate-outputs": true,
+    "rewrite": {
+      " ": "Desktop"
+    }
+  }
+}

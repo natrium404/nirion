@@ -1,0 +1,14 @@
+{
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-alt": "{percent}% {icon}",
+    "format-alt-click": "click-right",
+    "format-icons": [
+      "  ",
+      "  "
+    ],
+    "on-scroll-down": "swayosd-client --brightness lower",
+    "on-scroll-up": "swayosd-client --brightness raise"
+  }
+}

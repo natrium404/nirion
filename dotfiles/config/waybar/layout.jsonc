@@ -1,0 +1,39 @@
+{
+	// -------------------------------------------------------------------------
+	// INCLUDE NEEDED MODUELS
+	// -------------------------------------------------------------------------
+	"include": [
+		"modules/backlight.jsonc",
+		"modules/battery.jsonc",
+		"modules/clock.jsonc",
+		"modules/cpu.jsonc",
+		"modules/idle_inhibitor.jsonc",
+		"modules/memory.jsonc",
+		"modules/niri.jsonc",
+		"modules/tray.jsonc",
+		"modules/privacy.jsonc",
+		"modules/custom/media.jsonc",
+		"modules/custom/power.jsonc",
+		"modules/wireplumber.jsonc"
+	],
+	// -------------------------------------------------------------------------
+	// MODULE LAYOUT
+	// -------------------------------------------------------------------------
+	"modules-left": [
+		"niri/workspaces",
+		"tray",
+		"idle_inhibitor",
+		"custom/media"
+	],
+	"modules-right": [
+		"privacy",
+		"memory",
+		"cpu",
+		"backlight",
+		"wireplumber",
+		"battery",
+		// "network",
+		"clock",
+		"custom/power"
+	]
+}

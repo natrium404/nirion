@@ -1,0 +1,27 @@
+{
+  "wireplumber": {
+    "on-click-right": "pavucontrol",
+    "on-click": "swayosd-client --output-volume mute-toggle",
+    "on-scroll-down": "swayosd-client --output-volume lower --max-volume 120",
+    "on-scroll-up": "swayosd-client --output-volume raise --max-volume 120",
+    "format": "<span foreground='#fab387'>{icon}</span> {volume}%",
+    "format-muted": "<span foreground='#fab387'>  Muted</span>",
+    "min-length": 8,
+    "format-source": "",
+    "format-source-muted": " ",
+    "format-icons": {
+      "headphone": " ",
+      "hands-free": " ",
+      "headset": " ",
+      "phone": " ",
+      "portable": " ",
+      "car": " ",
+      "default": [
+        "  ",
+        "  ",
+        "  "
+      ]
+    },
+    "tooltip-format": "Volume: {volume}%\n{node_name}"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "cpu": {
+    "interval": 1,
+    // "format": "{max_frequency}GHz <span color=\"darkgray\">| {usage}%</span>",
+    "format": "   {usage}%",
+    "max-length": 120,
+    "min-length": 8,
+    "on-click": "kitty -T 'System Monitor' --class 'kitty-float' -e btop"
+  }
+}

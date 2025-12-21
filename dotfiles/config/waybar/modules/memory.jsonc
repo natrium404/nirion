@@ -1,0 +1,7 @@
+{
+  "memory": {
+    "interval": 2,
+    "format": "    {used:0.2f} GB",
+    "on-click": "kitty -T 'System Monitor' --class 'kitty-float' -e btop"
+  }
+}

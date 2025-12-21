@@ -40,6 +40,7 @@ input {
 output "eDP-1" {
     mode "1920x1080@60.052"
     position x=0 y=0
+    background-color "#000000"
 }
 
 output "HDMI-A-1" {
@@ -65,7 +66,7 @@ binds {
     MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
 
     // Please choose your own file manager
-    MOD+E                             hotkey-overlay-title="File Manager: Thunar" { spawn-sh "thunar"; }
+    MOD+E                               hotkey-overlay-title="File Manager: Thunar" { spawn-sh "thunar"; }
 
     // ─── Audio Controls ───
     // Example volume keys mappings for PipeWire & WirePlumber.
@@ -81,6 +82,10 @@ binds {
     // ─── Brightness Controls ───
     XF86MonBrightnessUp                { spawn-sh "command -v swayosd-client >/dev/null 2>&1 && pgrep -x swayosd-server >/dev/null && swayosd-client --brightness raise || brightnessctl s 5%+"; }
     XF86MonBrightnessDown                 { spawn-sh "command -v swayosd-client >/dev/null 2>&1 && pgrep -x swayosd-server >/dev/null && swayosd-client --brightness lower || brightnessctl s 5%-"; }
+
+    // ─── Brightness Controls ───
+    XF86Calculator {spawn-sh "kitty -T 'Calculator' --class 'kitty-float' -e rink"; }
+
 
 
     // ─── Window Movement and Focus ───
@@ -185,9 +190,17 @@ binds {
     MOD+W                               { toggle-column-tabbed-display; }
 
     // ─── Screenshots ───
-    MOD+SHIFT+PRINT                     { screenshot; }
-    MOD+PRINT                           { screenshot-screen; }
-    MOD+CTRL+SHIFT+PRINT                { screenshot-window; }
+  MOD+SHIFT+PRINT hotkey-overlay-title="Screenshot: show UI and selection" {
+        spawn-sh "sh -c 'command -v wl-paste >/dev/null && command -v swappy >/dev/null && old=$(wl-paste -t image/png 2>/dev/null | sha256sum 2>/dev/null); niri msg action screenshot; until [ \"$(wl-paste -t image/png 2>/dev/null | sha256sum 2>/dev/null)\" != \"$old\" ]; do sleep 0.02; done; wl-paste -t image/png | swappy -f - || niri msg action screenshot'"
+    }
+
+    MOD+PRINT hotkey-overlay-title="Screenshot: select output screen" {
+        spawn-sh "sh -c 'command -v wl-paste >/dev/null && command -v swappy >/dev/null && old=$(wl-paste -t image/png 2>/dev/null | sha256sum 2>/dev/null); niri msg action screenshot-screen; until [ \"$(wl-paste -t image/png 2>/dev/null | sha256sum 2>/dev/null)\" != \"$old\" ]; do sleep 0.02; done; wl-paste -t image/png | swappy -f - || niri msg action screenshot-screen'"
+    }
+
+    MOD+CTRL+SHIFT+PRINT hotkey-overlay-title="Screenshot: select available windows" {
+        spawn-sh "sh -c 'command -v wl-paste >/dev/null && command -v swappy >/dev/null && old=$(wl-paste -t image/png 2>/dev/null | sha256sum 2>/dev/null); niri msg action screenshot-window; until [ \"$(wl-paste -t image/png 2>/dev/null | sha256sum 2>/dev/null)\" != \"$old\" ]; do sleep 0.02; done; wl-paste -t image/png | swappy -f - || niri msg action screenshot-window'"
+    }
 
     // ─── Emergency Escape Key ───
     // Use this when a fullscreen app blocks your keybinds.
@@ -207,14 +220,27 @@ binds {
     MOD+F2 { spawn-sh "command -v chamel >/dev/null 2>&1 && chamel undo"; }
     MOD+F3 { spawn-sh "command -v chamel >/dev/null 2>&1 && chamel clear"; }
     MOD+F4 { spawn-sh "pgrep -x chameleos >/dev/null && chamel exit || chameleos &"; }
+
+    // ────── Swaync - Notification center toggle ─────────
+    MOD+SHIFT+N { spawn-sh "command -v swaync-client >/dev/null 2>&1 && swaync-client -t -sw"; }
+
+    // toggle and reload waybar
+    MOD+A       { spawn-sh "pkill -USR1 waybar || waybar"; }
+    MOD+SHIFT+A { spawn-sh "pkill -USR2 waybar || waybar"; }
+
 }
 
 // ────────────── Startup Applications ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#spawn-sh-at-startup
 
     spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &" // Polkit
-    spawn-sh-at-startup "swww-daemon" // Wallpaper daemon
-    spawn-sh-at-startup "swww img /usr/share/wallpapers/cachyos-wallpapers/Skyscraper.png" // Set wallpaper
+    spawn-sh-at-startup "command -v waytrogen >/dev/null 2>&1 && waytrogen -r || swww-daemon" // Wallpaper daemon
+    spawn-sh-at-startup "command -v waytrogen >/dev/null 2>&1 || swww img /usr/share/wallpapers/cachyos-wallpapers/Skyscraper.png" // Set wallpaper
+
+    // launch swaync - a gtk based notification daemon and control center
+    // spawn-sh-at-startup "command -v swaync >/dev/null 2>&1 && pkill mako 2>/dev/null; swaync &"
+    // ummm just stop and disable the mako.service then enable and start the swaync.service
+    
     spawn-sh-at-startup "waybar" // Launch waybar
 
 
@@ -323,9 +349,29 @@ binds {
 
     window-rule {
         match app-id=r#"com.clippy.clipboard$"# title="^Clipboard$"
+        match app-id="kitty-float"
+        match app-id="org.pulseaudio.pavucontrol"
+
         open-floating true
+    }
+
+    window-rule {
+        match app-id=r#"com.clippy.clipboard$"# title="^Clipboard$"
         max-width 600
         max-height 600
+    }
+
+    window-rule {
+        match app-id="kitty-float" title="System Monitor"
+        min-width 800
+    }
+
+    window-rule {
+        match app-id="kitty-float" title="Calculator"
+        max-width 400
+        min-width 400
+        max-height 200
+        min-height 200
     }
 
     // waydroid
@@ -394,4 +440,8 @@ cursor {
 xwayland-satellite {
     // off
     path "xwayland-satellite"
+}
+
+overview {
+    backdrop-color "#000"
 }
