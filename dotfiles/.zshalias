@@ -7,7 +7,6 @@
 # alias make="make -j$MAKEJOBS"
 # alias ninja="ninja -j$MAKEJOBS"
 # alias n="ninja"
-
 ## System Management
 alias update="sudo pacman -Syu"
 alias fixpacman="sudo rm /var/lib/pacman/db.lck"
@@ -62,3 +61,45 @@ alias egrep='egrep --color=auto'
 
 # Visual Studio Code (wayland)
 alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland'
+
+
+# rclone
+alias rc="rclone"
+alias rcm='rclone mount --vfs-cache-mode full --vfs-cache-max-size 10G --vfs-cache-max-age 24h --bwlimit-file 10M --dir-cache-time 72h --buffer-size 128M --poll-interval 15s --daemon --allow-other'
+alias rcu='fusermount -u'
+alias rcls='rclone ls'
+alias rclsl='rclone lsl'
+alias rclsd='rclone lsd'
+alias rclr='rclone listremotes'
+
+# config files
+alias nvc="nvim ~/.config/nvim/"
+
+# neovim
+alias nv="nvim"
+
+# git
+alias gs="git status"
+alias ga="git add"
+alias gc="git commit -m"
+alias gp="git push"
+
+# yt-dlp
+alias yta-aac="yt-dlp --extract-audio --audio-format aac "
+alias yta-best="yt-dlp --extract-audio --audio-format best "
+alias yta-flac="yt-dlp --extract-audio --audio-format flac "
+alias yta-m4a="yt-dlp --extract-audio --audio-format m4a "
+alias yta-mp3="yt-dlp --extract-audio --audio-format mp3 "
+alias yta-opus="yt-dlp --extract-audio --audio-format opus "
+alias yta-vorbis="yt-dlp --extract-audio --audio-format vorbis "
+alias yta-wav="yt-dlp --extract-audio --audio-format wav "
+alias ytv-best="yt-dlp -f bestvideo+bestaudio "
+alias ytv-best-mp4="yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' "
+alias ytv-best-webm="yt-dlp -f 'bestvideo[ext=webm]+bestaudio[ext=webm]/bestvideo+bestaudio' "
+alias ytv-best-all="yt-dlp -f 'bestvideo+bestaudio' "
+alias ytv-best-all-mp4="yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' "
+alias ytv-best-all-webm="yt-dlp -f 'bestvideo[ext=webm]+bestaudio[ext=webm]/bestvideo+bestaudio' "
+
+# switcheroo
+alias switchnvidia="switcherooctl -g 1"
+

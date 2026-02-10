@@ -16,6 +16,7 @@ input {
     touchpad {
         tap // Enable tap-to-click
         natural-scroll // Enable natural (macOS-style) scrolling
+        dwt //  disable while typing
     }
 
     focus-follows-mouse // Automatically focus windows under the mouse pointer
@@ -27,11 +28,6 @@ input {
 // You will have to remove "/-" and edit it before it takes effect.
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 
-/- output "DP-1" {
-    mode "2560x1440@359.979" // Set resolution and refresh rate
-    scale 1 // No scaling (use 2 for HiDPI)
-}
-
 // output "HDMI-A-1" {
 //     mode "1366x768@59.790"
 //     position x=0 y=0
@@ -39,15 +35,16 @@ input {
 
 output "eDP-1" {
     mode "1920x1080@60.052"
-    position x=0 y=0
+    // position x=0 y=0
     background-color "#000000"
 }
 
 output "HDMI-A-1" {
-    mode "1280x720@60.000"
+    mode "1366x768@59.790"
     // mode "1920x1080@60.052"
 
-    position x=1920 y=0
+    position x=0 y=0
+    // position x=1920 y=0
     // transform "90"
 }
 
@@ -59,8 +56,9 @@ binds {
 
     // ─── Applications ───
     MOD+RETURN                          hotkey-overlay-title="Open Terminal: kitty" { spawn-sh "kitty"; }
-    MOD+SPACE                           hotkey-overlay-title="Open Launcher: anyrun" { spawn-sh "anyrun"; }
-    MOD+SHIFT+SPACE                     hotkey-overlay-title="Open App Launcher: wofi" { spawn-sh "wofi"; }
+    // MOD+SPACE                           hotkey-overlay-title="Open Launcher: anyrun" { spawn-sh "anyrun"; }
+    MOD+SPACE                           hotkey-overlay-title="Open Launcher: wofi" { spawn-sh "wofi"; }
+    // MOD+SHIFT+SPACE                     hotkey-overlay-title="Open App Launcher: wofi" { spawn-sh "wofi"; }
     MOD+D                               hotkey-overlay-title="Open Bemenu: bemenu-run" { spawn-sh "bemenu-run"; }
     MOD+B                               hotkey-overlay-title="Open Default Browser" { spawn-sh "$BROWSER"; }
     MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
@@ -71,17 +69,17 @@ binds {
     // ─── Audio Controls ───
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
-    XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "command -v swayosd-client >/dev/null 2>&1 && pgrep -x swayosd-server >/dev/null && swayosd-client --output-volume raise --max-volume 100 || wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+"; }
-    XF86AudioLowerVolume                allow-when-locked=true { spawn-sh "command -v swayosd-client >/dev/null 2>&1 && pgrep -x swayosd-server >/dev/null && swayosd-client --output-volume lower --max-volume 100 || wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
-    XF86AudioMute                       allow-when-locked=true { spawn-sh "command -v swayosd-client >/dev/null 2>&1 && pgrep -x swayosd-server >/dev/null && swayosd-client --output-volume raise --max-volume 100 || wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.04+"; }
+    XF86AudioLowerVolume                allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.04-"; }
+    XF86AudioMute                       allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
     XF86AudioNext                       allow-when-locked=true { spawn-sh "playerctl next"; }
     XF86AudioPause                      allow-when-locked=true { spawn-sh "playerctl play-pause"; }
     XF86AudioPlay                       allow-when-locked=true { spawn-sh "playerctl play-pause"; }
     XF86AudioPrev                       allow-when-locked=true { spawn-sh "playerctl previous"; }
     
     // ─── Brightness Controls ───
-    XF86MonBrightnessUp                { spawn-sh "command -v swayosd-client >/dev/null 2>&1 && pgrep -x swayosd-server >/dev/null && swayosd-client --brightness raise || brightnessctl s 5%+"; }
-    XF86MonBrightnessDown                 { spawn-sh "command -v swayosd-client >/dev/null 2>&1 && pgrep -x swayosd-server >/dev/null && swayosd-client --brightness lower || brightnessctl s 5%-"; }
+    XF86MonBrightnessUp                { spawn-sh "brightnessctl s 5%+"; }
+    XF86MonBrightnessDown              { spawn-sh "brightnessctl s 5%-"; }
 
     // ─── Brightness Controls ───
     XF86Calculator {spawn-sh "kitty -T 'Calculator' --class 'kitty-float' -e rink"; }
@@ -244,7 +242,7 @@ binds {
     spawn-sh-at-startup "waybar" // Launch waybar
 
 
-    spawn-sh-at-startup "command -v anyrun >/dev/null 2>&1 && anyrun daemon &" // Launch anyrun
+    // spawn-sh-at-startup "command -v anyrun >/dev/null 2>&1 && anyrun daemon &" // Launch anyrun
 
 
     // GTK3 and GTK4 THEME
@@ -257,11 +255,11 @@ binds {
     spawn-sh-at-startup "wl-paste --type image --watch cliphist store &"
 
     // Ianny - a desktop utility that tracks your computer usage and reminds you to take breaks.
-    spawn-sh-at-startup "command -v ianny >/dev/null 2>&1 && ianny || exit 0"
+    // spawn-sh-at-startup "command -v ianny >/dev/null 2>&1 && ianny || exit 0"
 
     // run swayosd
     // paru -S swayosd
-    spawn-sh-at-startup "command -v swayosd-server >/dev/null && swayosd-server &"
+    // spawn-sh-at-startup "command -v swayosd-server >/dev/null && swayosd-server &"
 
     prefer-no-csd // Disable program decorations
     screenshot-path null // Disable screenshot saving
@@ -271,7 +269,7 @@ binds {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 
     layout {
-        gaps 12 // Gap between windows
+        gaps 8 // Gap between windows
         center-focused-column "never" // Don’t auto-center focused column
 
         preset-column-widths {
@@ -334,6 +332,7 @@ binds {
     // workspace "android" {
     //  open-on-output "eDP-1"
     // }
+
 // ────────────── Window Rules ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
 
@@ -351,6 +350,12 @@ binds {
         match app-id=r#"com.clippy.clipboard$"# title="^Clipboard$"
         match app-id="kitty-float"
         match app-id="org.pulseaudio.pavucontrol"
+        match app-id="com.saivert.pwvucontrol"
+        match app-id="org.gnome.FileRoller" title="^Extract$"
+        match app-id="thunar" title="^File Operation Progress$"
+        match app-id="thunar" title="^Rename"
+        match app-id="org.gnome.FileRoller" title="^New Archive$"
+        match app-id="" title="^Picture in picture"
 
         open-floating true
     }
@@ -373,6 +378,13 @@ binds {
         max-height 200
         min-height 200
     }
+
+    window-rule {
+        match app-id="" title="^Picture in picture"
+        min-width 470
+        min-height 265
+    }
+
 
     // waydroid
     // window-rule {

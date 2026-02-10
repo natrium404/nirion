@@ -72,3 +72,18 @@ source ~/.zshalias
 
 # bun completions
 [ -s "/home/natrium/.bun/_bun" ] && source "/home/natrium/.bun/_bun"
+
+# opencode
+export PATH=/home/natrium/.opencode/bin:$PATH
+
+# pnpm
+export PNPM_HOME="/home/natrium/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+. "$HOME/.local/bin/env"
+
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"

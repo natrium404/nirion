@@ -1,6 +1,6 @@
 {
   "wireplumber": {
-    "on-click-right": "pavucontrol",
+    "on-click-right": "pwvucontrol",
     "on-click": "swayosd-client --output-volume mute-toggle",
     "on-scroll-down": "swayosd-client --output-volume lower --max-volume 120",
     "on-scroll-up": "swayosd-client --output-volume raise --max-volume 120",
