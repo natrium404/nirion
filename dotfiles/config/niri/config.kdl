@@ -57,8 +57,9 @@ binds {
     // ─── Applications ───
     MOD+RETURN                          hotkey-overlay-title="Open Terminal: kitty" { spawn-sh "kitty"; }
     // MOD+SPACE                           hotkey-overlay-title="Open Launcher: anyrun" { spawn-sh "anyrun"; }
-    MOD+SPACE                           hotkey-overlay-title="Open Launcher: wofi" { spawn-sh "wofi"; }
-    // MOD+SHIFT+SPACE                     hotkey-overlay-title="Open App Launcher: wofi" { spawn-sh "wofi"; }
+    MOD+SPACE                           hotkey-overlay-title="Open Launcher: wofi" { spawn-sh "rofi -show drun -show-icons"; }
+    // MOD+SPACE                           hotkey-overlay-title="Open Launcher: wofi" { spawn-sh "wofi"; }
+    MOD+SHIFT+SPACE                     hotkey-overlay-title="Open App Launcher: wofi" { spawn-sh "wofi"; }
     MOD+D                               hotkey-overlay-title="Open Bemenu: bemenu-run" { spawn-sh "bemenu-run"; }
     MOD+B                               hotkey-overlay-title="Open Default Browser" { spawn-sh "$BROWSER"; }
     MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }

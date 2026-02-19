@@ -1,9 +1,16 @@
 {
   "wireplumber": {
     "on-click-right": "pwvucontrol",
-    "on-click": "swayosd-client --output-volume mute-toggle",
-    "on-scroll-down": "swayosd-client --output-volume lower --max-volume 120",
-    "on-scroll-up": "swayosd-client --output-volume raise --max-volume 120",
+    // swayosd
+    // "on-click": "swayosd-client --output-volume mute-toggle",
+    // "on-scroll-down": "swayosd-client --output-volume lower --max-volume 120",
+    // "on-scroll-up": "swayosd-client --output-volume raise --max-volume 120",
+
+    // wapctl
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.04-",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.04+",
+
     "format": "<span foreground='#fab387'>{icon}</span> {volume}%",
     "format-muted": "<span foreground='#fab387'>  Muted</span>",
     "min-length": 8,
