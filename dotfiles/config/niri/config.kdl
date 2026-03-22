@@ -227,6 +227,27 @@ binds {
     MOD+A       { spawn-sh "pkill -USR1 waybar || waybar"; }
     MOD+SHIFT+A { spawn-sh "pkill -USR2 waybar || waybar"; }
 
+    // obsirofi
+    // Obsidian vault navigator using Rofi.
+    // https://github.com/natrium404/obsirofi
+    MOD+ALT+O { 
+        spawn-sh "
+            ([[ -x ~/.local/bin/obsirofi ]] && ~/.local/bin/obsirofi) || 
+            (command -v obsirofi >/dev/null 2>&1 && obsirofi) ||
+            notify-send 'Obsirofi' 'Not installed'
+         ";
+    }
+
+    // systofi
+    // A rofi-powered systemd service manager for Linux.
+    // https://github.com/natrium404/systofi
+    MOD+ALT+S {
+        spawn-sh "
+            ([[ -x ~/.local/bin/systofi ]] && ~/.local/bin/systofi) || 
+            (command -v systofi >/dev/null 2>&1 && systofi) ||
+            notify-send 'Systofi' 'Not installed'
+        ";
+    }
 }
 
 // ────────────── Startup Applications ──────────────

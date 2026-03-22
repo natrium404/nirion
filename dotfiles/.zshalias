@@ -45,11 +45,11 @@ alias ..4='cd ../../../..'
 alias ..5='cd ../../../../..'
 
 ## Safer ls with eza
-alias els='eza --icons=always --no-time --no-user --no-permissions --color=always --long -G --git --no-filesize'
-alias ela='eza -a --color=always --group-directories-first --icons'
-alias el='eza -l --color=always --group-directories-first --icons'
-alias et='eza -aT --color=always --group-directories-first --icons'
-alias el.='eza -a | grep -e "^\."'
+alias ls='eza --icons=always --no-time --no-user --no-permissions --color=always --long -G --git --no-filesize'
+alias la='eza -a --color=always --group-directories-first --icons'
+alias ll='eza -l --color=always --group-directories-first --icons'
+alias lt='eza -aT --color=always --group-directories-first --icons'
+alias l.='eza -a | grep -e "^\."'
 
 ## Core utils with color
 alias dir='dir --color=auto'
@@ -79,10 +79,10 @@ alias nvc="nvim ~/.config/nvim/"
 alias nv="nvim"
 
 # git
-alias gs="git status"
-alias ga="git add"
-alias gc="git commit -m"
-alias gp="git push"
+# alias gs="git status"
+# alias ga="git add"
+# alias gcm="git commit -m"
+# alias gp="git push"
 
 # yt-dlp
 alias yta-aac="yt-dlp --extract-audio --audio-format aac "
@@ -102,4 +102,8 @@ alias ytv-best-all-webm="yt-dlp -f 'bestvideo[ext=webm]+bestaudio[ext=webm]/best
 
 # switcheroo
 alias switchnvidia="switcherooctl -g 1"
+
+# rsync
+alias rsn="rsync --progress -r"
+
 

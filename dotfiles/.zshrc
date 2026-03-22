@@ -4,6 +4,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export PATH="$HOME/.bun/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
+export BUN_INSTALL="$HOME/go/bin/"
 
 # Oh My Zsh setup
 export ZSH="$HOME/.oh-my-zsh"
