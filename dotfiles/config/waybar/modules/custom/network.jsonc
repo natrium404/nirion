@@ -1,0 +1,11 @@
+{
+  "custom/network": {
+    "exec": "$HOME/.nirion/dotfiles/config/waybar/scripts/network.sh",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "if command -v impala &>/dev/null; then if rfkill list wifi | grep -q 'Soft blocked: no'; then kitty -T 'Network' --class 'kitty-float' -e impala; else notify-send -u critical -t 5000 -i network-wireless-disabled \"WiFi Required\" \"<b>📡 WiFi is OFF</b>\\n\\nRight-click to enable WiFi\\nThen left-click to open Impala\"; fi; else notify-send -u critical -t 0 -i dialog-error \"Error\" \"<b>❌ Impala TUI not found</b>\\n\\nPlease install Impala:\\n<span font='monospace'>sudo pacman -S impala</span>\"; fi",
+    "on-click-right": "if command -v rfkill >/dev/null 2>&1; then if rfkill list wifi | grep -q \"Soft blocked: yes\"; then rfkill unblock wifi && notify-send -t 1500 -i network-wireless \"WiFi\" \"WiFi ON\"; else rfkill block wifi && notify-send -t 1500 -i network-wireless-disabled \"WiFi\" \"WiFi OFF\"; fi; else notify-send \"Error\" \"rfkill not found\"; fi",
+    "signal": 8,
+    "tooltip": true
+  }
+}

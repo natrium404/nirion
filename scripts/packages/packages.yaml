@@ -3,7 +3,7 @@ pacman:
   - android-udev
   - archlinux-keyring
   - aria2
-  - blueman
+  - bemenu-wayland
   - bluetui
   - bluez
   - bluez-utils
@@ -13,6 +13,7 @@ pacman:
   - cmake
   - cmus
   - cpio
+  - dhcpcd
   - direnv
   - eza
   - fcitx5
@@ -38,13 +39,13 @@ pacman:
   - libmtp
   - lsof
   - ly
+  - mesa-demos
   - meson
   - mpc
   - mpv-mpris
   - mtpfs
   - mupdf
   - neovim
-  - network-manager-applet
   - noto-fonts
   - noto-fonts-extra
   - ntfs-3g
@@ -61,27 +62,28 @@ pacman:
   - python-pip
   - python-pipx
   - rink
+  - rofi
   - scrcpy
   - seahorse
   - shotcut
   - sqlite3
+  - swww
   - syncthing
   - tree
   - ttf-iosevka-nerd
   - ttf-jetbrains-mono-nerd
   - v4l2loopback-dkms
   - viewnior
-  - wob
+  - vulkan-tools
+  - wlogout
   - yazi
   - zen-browser-bin
 aur:
   - cpu-x
   - google-chrome
-  - ianny-bin
   - iriunwebcam-bin
   - luakit
   - pinta
-  - postman
   - rnote
   - sublime-text-4
   - vencord

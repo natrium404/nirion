@@ -8,8 +8,8 @@
 
     // wapctl
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.04-",
-    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.04+",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.04+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.04-",
 
     "format": "<span foreground='#fab387'>{icon}</span> {volume}%",
     "format-muted": "<span foreground='#fab387'>  Muted</span>",

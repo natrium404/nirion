@@ -24,7 +24,7 @@ usage() {
 }
 
 # Ensure correct number of arguments
-if [[ $# -lt 2 ]] || ([[ $1 != "install_all" ]] && [[ $# -ne 3 ]]); then
+if [[ $# -lt 2 ]] || { [[ $1 != "install_all" ]] && [[ $# -ne 3 ]]; }; then
   usage
 fi
 

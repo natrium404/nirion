@@ -5,3 +5,6 @@ dotfiles/config/geany/templates
 
 scripts/.cache
 scripts/*.log
+
+# Backup files
+*.bak

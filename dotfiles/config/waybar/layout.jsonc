@@ -12,7 +12,9 @@
 		"modules/niri.jsonc",
 		"modules/tray.jsonc",
 		"modules/privacy.jsonc",
+		"modules/custom/bluetooth.jsonc",
 		"modules/custom/media.jsonc",
+		"modules/custom/network.jsonc",
 		"modules/custom/power.jsonc",
 		"modules/wireplumber.jsonc"
 	],
@@ -23,6 +25,8 @@
 		"niri/workspaces",
 		"tray",
 		"idle_inhibitor",
+		"custom/network",
+		"custom/bluetooth",
 		"custom/media"
 	],
 	"modules-right": [
@@ -32,7 +36,6 @@
 		"backlight",
 		"wireplumber",
 		"battery",
-		// "network",
 		"clock",
 		"custom/power"
 	]

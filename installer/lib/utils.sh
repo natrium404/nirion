@@ -30,7 +30,7 @@ atomic_symlink() {
 	local dest="$2"
 	local backfile
 	if ([ -e "$dest" ] || [ -L "$dest" ]); then
-		if [ $FORCE_RUN ]; then
+		if [ "$FORCE_RUN" = true ]; then
 			rm -rf "$dest"
 		else
 			mv "$dest" "${dest}.backup.$(date +%s)"

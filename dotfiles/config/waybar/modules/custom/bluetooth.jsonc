@@ -1,0 +1,11 @@
+{
+  "custom/bluetooth": {
+    "exec": "$HOME/.nirion/dotfiles/config/waybar/scripts/bluetooth.sh",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "if command -v bluetui &>/dev/null; then if bluetoothctl show 2>/dev/null | grep -q 'Powered: yes'; then kitty -T 'Bluetooth' --class 'kitty-float' -e bluetui; else notify-send -u critical -t 5000 -i bluetooth-disabled \"Bluetooth Required\" \"<b>🔵 Bluetooth is OFF</b>\\n\\nRight-click to enable Bluetooth\\nThen left-click to open bluetui\"; fi; else notify-send -u critical -t 0 -i dialog-error \"Error\" \"<b>❌ bluetui not found</b>\\n\\nPlease install bluetui:\\n<span font='monospace'>paru -S bluetui</span>\"; fi",
+    "on-click-right": "if bluetoothctl show 2>/dev/null | grep -q 'Powered: yes'; then bluetoothctl power off && notify-send -t 1500 -i bluetooth-disabled \"Bluetooth\" \"Bluetooth OFF\"; else bluetoothctl power on && notify-send -t 1500 -i bluetooth \"Bluetooth\" \"Bluetooth ON\"; fi",
+    "signal": 8,
+    "tooltip": true
+  }
+}

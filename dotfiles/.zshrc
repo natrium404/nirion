@@ -3,8 +3,8 @@ export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export PATH="$HOME/.bun/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
-export BUN_INSTALL="$HOME/go/bin/"
 
 # Oh My Zsh setup
 export ZSH="$HOME/.oh-my-zsh"
@@ -34,17 +34,6 @@ ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 # Starship prompt setup
 eval "$(starship init zsh)"
-SPACESHIP_PROMPT_ASYNC=true
-SPACESHIP_PROMPT_ADD_NEWLINE=true
-SPACESHIP_CHAR_SYMBOL="⚡"
-SPACESHIP_PROMPT_ORDER=(
-    time
-    user
-    dir
-    git
-    line_sep
-    char
-)
 
 # ASDF setup
 [ -s "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/" ] && . ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
@@ -57,16 +46,17 @@ eval "$(fzf --zsh)"
 fpath=("/home/natrium/.zsh/completions" $fpath)
 
 # History settings
-export HISTCONTROL=ignoreboth
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
 export HISTIGNORE="&:[bf]g:c:clear:history:exit:q:pwd:* --help"
-export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+precmd() { fc -AI }
 
 # Man page formatting
 export LESS_TERMCAP_md="$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)"
 export LESS_TERMCAP_me="$(tput sgr0 2> /dev/null)"
 
 # Command-not-found handler
-source /usr/share/doc/pkgfile/command-not-found.zsh
+[[ -f /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
 
 # Alias file
 source ~/.zshalias

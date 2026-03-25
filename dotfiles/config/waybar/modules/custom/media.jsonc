@@ -7,7 +7,7 @@
     "escape": true,
     "exec": "$HOME/.config/waybar/scripts/player.sh 2> /dev/null",
     "on-click": "playerctl play-pause",
-    "on-click-right": "playerctl next",
+    "on-click-right": "command -v goplaying >/dev/null 2>&1 && kitty --class='kitty-float' -T 'Now Playing' -e goplaying",
     "on-scroll-up": "playerctl next",
     "on-scroll-down": "playerctl previous"
   }

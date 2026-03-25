@@ -7,7 +7,7 @@
 input {
     keyboard {
         xkb {
-            layout "us" // Use the German keyboard layout
+            layout "us"
 	        options "caps:swapescape" // Swap Caps with Escape
         }
         numlock // Enable numlock on startup
@@ -35,7 +35,7 @@ input {
 
 output "eDP-1" {
     mode "1920x1080@60.052"
-    // position x=0 y=0
+    position x=0 y=0
     background-color "#000000"
 }
 
@@ -43,8 +43,8 @@ output "HDMI-A-1" {
     mode "1366x768@59.790"
     // mode "1920x1080@60.052"
 
-    position x=0 y=0
-    // position x=1920 y=0
+    // position x=0 y=0
+    position x=1920 y=0
     // transform "90"
 }
 
@@ -253,15 +253,17 @@ binds {
 // ────────────── Startup Applications ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#spawn-sh-at-startup
 
-    spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &" // Polkit
-    spawn-sh-at-startup "command -v waytrogen >/dev/null 2>&1 && waytrogen -r || swww-daemon" // Wallpaper daemon
-    spawn-sh-at-startup "command -v waytrogen >/dev/null 2>&1 || swww img /usr/share/wallpapers/cachyos-wallpapers/Skyscraper.png" // Set wallpaper
+    // spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &" // Polkit
+    spawn-sh-at-startup "/usr/bin/lxqt-policykit-agent &" // Polkit
+    spawn-sh-at-startup "awww-daemon" // Wallpaper daemon
+    // spawn-sh-at-startup "command -v waytrogen >/dev/null 2>&1 || awww img /usr/share/wallpapers/cachyos-wallpapers/Skyscraper.png" // Set wallpaper
 
     // launch swaync - a gtk based notification daemon and control center
     // spawn-sh-at-startup "command -v swaync >/dev/null 2>&1 && pkill mako 2>/dev/null; swaync &"
     // ummm just stop and disable the mako.service then enable and start the swaync.service
     
     spawn-sh-at-startup "waybar" // Launch waybar
+    spawn-sh-at-startup "$HOME/.config/waybar/scripts/player-signal-listener.sh &" // Player event listener
 
 
     // spawn-sh-at-startup "command -v anyrun >/dev/null 2>&1 && anyrun daemon &" // Launch anyrun
@@ -369,6 +371,7 @@ binds {
     }
 
     window-rule {
+        match app-id="lxqt-policykit-agent" 
         match app-id=r#"com.clippy.clipboard$"# title="^Clipboard$"
         match app-id="kitty-float"
         match app-id="org.pulseaudio.pavucontrol"
@@ -389,9 +392,19 @@ binds {
     }
 
     window-rule {
-        match app-id="kitty-float" title="System Monitor"
-        min-width 800
+        match app-id="kitty-float"
+        min-height 200
+        max-height 800
+        min-width 600
+        max-width 1200
+        default-floating-position x=0 y=120 relative-to="top"
+
     }
+
+    // window-rule {
+    //     match app-id="kitty-float" title="System Monitor"
+    //     min-width 800
+    // }
 
     window-rule {
         match app-id="kitty-float" title="Calculator"

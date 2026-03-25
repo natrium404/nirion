@@ -22,8 +22,8 @@
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/your-repo.git ~/niri-setup
-cd ~/niri-setup/installer
+git clone https://github.com/natri0x/nirion.git ~/.nirion
+cd ~/.nirion/installer
 ````
 
 Run the installer:
@@ -70,6 +70,7 @@ The installer is modular. Each module resides in `installer/modules/`:
 | Module        | Purpose                            |
 | ------------- | ---------------------------------- |
 | `packages.sh` | Install Pacman packages            |
+| `iwd.sh`      | Setup iwd + dhcpcd networking      |
 | `paru.sh`     | Install AUR helper if needed       |
 | `zsh.sh`      | Install Oh-My-Zsh and plugins      |
 | `starship.sh` | Install Starship prompt            |
@@ -196,7 +197,7 @@ Examples:
 
 ## Logging
 
-* All actions are logged to `~/niri_setup.log`
+* All actions are logged to `~/.nirion.log`
 * Logs include **timestamps** and are **color-stripped**
 * Summary printed at the end of the installer shows **installed, skipped, or failed** modules
 
@@ -205,15 +206,16 @@ Examples:
 ## Project Structure
 
 ```
-niri-setup/
+nirion/
 ├── installer/
 │   ├── installer.sh
-│   ├── format.sh
-│   ├── lint.sh
 │   ├── modules/
 │   ├── lib/
 │   └── config/
 ├── dotfiles/
+├── scripts/
+├── format.sh
+├── lint.sh
 ├── LICENSE
 └── README.md
 ```

@@ -47,8 +47,7 @@ Config(
     "libsymbols.so",
     "libshell.so",
     "libtranslate.so",
-    "librink.so",
-    "libshell.so"
+    "librink.so"
   ],
 
   keybinds: [
@@ -63,10 +62,6 @@ Config(
     Keybind(
       key: "CTRL+N",
       action: Up, 
-    ),
-    Keybind(
-      key: "Down",
-      action: Down, 
     ),
     Keybind(
       key: "Down",

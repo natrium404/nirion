@@ -71,6 +71,7 @@ declare -A SUMMARY_STATUS=(
 	[flatpak]="Pending"
 	[pkglist]="Pending"
 	[cleanup]="Pending"
+	[iwd]="Pending"
 )
 
 # ------------------------------------------------------------
@@ -115,13 +116,21 @@ while (($#)); do
 done
 
 # ------------------------------------------------------------
-# Load configs
+# Load configs (user.conf first so CLI flags can override)
 # ------------------------------------------------------------
 CONFIG_DIR="$SCRIPT_DIR/config"
-CONFIG_FILES=(modules.conf paths.conf packages.conf logging.conf user.conf)
+CONFIG_FILES=(modules.conf paths.conf packages.conf logging.conf)
 for cfg in "${CONFIG_FILES[@]}"; do
 	[[ -f "$CONFIG_DIR/$cfg" ]] && source "$CONFIG_DIR/$cfg"
 done
+
+# Load user.conf defaults, but don't override CLI flags
+if [[ -f "$CONFIG_DIR/user.conf" ]]; then
+	_AUTO_YES_BEFORE=$AUTO_YES
+	source "$CONFIG_DIR/user.conf"
+	AUTO_YES=$_AUTO_YES_BEFORE
+	unset _AUTO_YES_BEFORE
+fi
 
 # ------------------------------------------------------------
 # Load libraries
@@ -161,7 +170,7 @@ preflight() {
 # Load modules dynamically
 # ------------------------------------------------------------
 MODULE_DIR="$SCRIPT_DIR/modules"
-MODULES_ORDER=(packages paru zsh starship themes fonts symlinks flatpak pkglist cleanup)
+MODULES_ORDER=(packages iwd paru zsh starship themes fonts symlinks flatpak pkglist cleanup)
 
 declare -A MODULE_FUNCS
 load_modules() {

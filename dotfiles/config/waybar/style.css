@@ -133,6 +133,45 @@ tooltip label {
   color: @accent3;
 }
 
+#custom-network,
+#custom-bluetooth {
+  background-color: @base;
+  border: 1px solid @border;
+  border-radius: 6px;
+  min-width: 18px;
+}
+
+#custom-network {
+  padding: 0px 12px 0px 8px;
+}
+
+#custom-bluetooth {
+  padding: 0 8px;
+  font-size: 13px;
+}
+
+#custom-network:hover,
+#custom-bluetooth:hover {
+  border: 1px solid @foreground;
+  transition: all 200ms ease-in;
+}
+
+#custom-network.on,
+#custom-network.connected,
+#custom-bluetooth.connected {
+  color: #9ece6a;
+}
+
+#custom-network.connecting {
+  color: #e0af68;
+}
+
+#custom-network.off,
+#custom-bluetooth.off,
+#custom-network.disconnected {
+  color: #f7768e;
+}
+
 
 /* -------------------------------------------------------------------------
    Animations
