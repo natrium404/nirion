@@ -8,7 +8,10 @@
       "  ",
       "  "
     ],
-    "on-scroll-down": "swayosd-client --brightness lower",
-    "on-scroll-up": "swayosd-client --brightness raise"
+    "on-click": "brightnessctl s 100%",
+    "on-scroll-down": "brightnessctl s 5%-",
+    "on-scroll-up": "brightnessctl s 5%+"
+    // "on-scroll-down": "swayosd-client --brightness lower",
+    // "on-scroll-up": "swayosd-client --brightness raise"
   }
 }

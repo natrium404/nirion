@@ -22,7 +22,7 @@
 Clone the repository:
 
 ```bash
-git clone https://github.com/natri0x/nirion.git ~/.nirion
+git clone https://github.com/natrium404/nirion.git ~/.nirion
 cd ~/.nirion/installer
 ````
 

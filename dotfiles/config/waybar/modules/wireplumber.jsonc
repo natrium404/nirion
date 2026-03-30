@@ -12,7 +12,7 @@
     "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.04-",
 
     "format": "<span foreground='#fab387'>{icon}</span> {volume}%",
-    "format-muted": "<span foreground='#fab387'>  Muted</span>",
+    "format-muted": "<span foreground='#fab387'>   Muted</span>",
     "min-length": 8,
     "format-source": "",
     "format-source-muted": " ",
