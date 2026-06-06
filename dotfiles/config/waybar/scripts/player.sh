@@ -32,7 +32,11 @@ playerctl metadata --follow --format '{{status}};{{artist}};{{title}};{{playerNa
   icon=" "
   [[ "$status" == "Paused" ]] && icon=" "
 
-  tooltip="Title: $title\nArtist: ${artist:-Unknown}\nAlbum: ${album:-N/A}\nPlayer: ${name^}\nStatus: $status"
+  pref_file="${XDG_RUNTIME_DIR:-/tmp}/playerctl-preferred-player"
+  pref=$(cat "$pref_file" 2>/dev/null)
+  pref_tag=""
+  [[ -n "$pref" ]] && pref_tag=" [selected]"
+  tooltip="Title: $title\nArtist: ${artist:-Unknown}\nAlbum: ${album:-N/A}\nPlayer: ${name^}${pref_tag}\nStatus: $status"
 
   final_bar=$(echo "$icon  $bar_text" | sed 's/"/\\"/g')
   final_tooltip=$(echo "$tooltip" | sed 's/"/\\"/g')

@@ -64,6 +64,7 @@ tooltip label {
 #workspaces,
 #privacy,
 #custom-media,
+#custom-player-icon,
 #tray {
   background-color: @base;
   padding: 0 8px;
@@ -83,7 +84,8 @@ tooltip label {
 #wireplumber:hover,
 #custom-power:hover,
 #privacy:hover,
-#custom-media:hover {
+#custom-media:hover,
+#custom-player-icon:hover {
   border: 1px solid @foreground;
   transition: all 200ms ease-in;
 }
@@ -129,8 +131,21 @@ tooltip label {
   color: @accent3;
 }
 
-#custom-media {
+#custom-media,
+#custom-player-icon {
   color: @accent3;
+}
+
+#custom-player-icon {
+  padding: 0 4px 0 8px;
+  font-size: 13px;
+}
+
+#custom-player-icon.hidden,
+#custom-media.hidden {
+  min-width: 0;
+  padding: 0;
+  border: 0;
 }
 
 #custom-network,

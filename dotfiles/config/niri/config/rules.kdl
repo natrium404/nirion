@@ -1,0 +1,121 @@
+// ────────────── Window Rules ──────────────
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true // Always float Firefox PiP windows
+}
+
+window-rule {
+    geometry-corner-radius 8 // Set every window radius to 20
+    clip-to-geometry true
+}
+
+window-rule {
+    match app-id="lxqt-policykit-agent" 
+    match app-id=r#"com.clippy.clipboard$"# title="^Clipboard$"
+    match app-id="kitty-float"
+    match app-id="org.pulseaudio.pavucontrol"
+    match app-id="com.saivert.pwvucontrol"
+    match app-id="org.gnome.FileRoller" title="^Extract$"
+    match app-id="thunar" title="^File Operation Progress$"
+    match app-id="thunar" title="^Rename"
+    match app-id="org.gnome.FileRoller" title="^New Archive$"
+    match app-id="" title="^Picture in picture"
+    match app-id="xpad"
+    match app-id="chrome-fjllepdpgikphekgbinhpdkalliiejdh-Default"
+
+    open-floating true
+}
+
+window-rule {
+    match app-id="chrome-fjllepdpgikphekgbinhpdkalliiejdh-Default"
+
+    min-width 800
+    min-height 1000
+    default-floating-position x=0 y=20 relative-to="top"
+}
+
+window-rule {
+    match app-id="xpad"
+    max-width 400
+    max-height 400
+}
+
+window-rule {
+    match app-id=r#"com.clippy.clipboard$"# title="^Clipboard$"
+    max-width 600
+    max-height 600
+}
+
+window-rule {
+    match app-id="kitty-float"
+    min-height 200
+    max-height 800
+    min-width 600
+    max-width 1200
+    default-floating-position x=0 y=120 relative-to="top"
+
+}
+
+window-rule {
+    match app-id="kitty-float" title="^Now Playing$"
+    max-width 600
+    min-width 600
+    min-height 380
+    max-height 380
+}
+
+// window-rule {
+//     match app-id="kitty-float" title="System Monitor"
+//     min-width 800
+// }
+
+window-rule {
+    match app-id="kitty-float" title="Calculator"
+    max-width 400
+    min-width 400
+    max-height 200
+    min-height 200
+}
+
+window-rule {
+    match app-id="" title="^Picture in picture"
+    min-width 470
+    min-height 265
+}
+
+
+// waydroid
+// window-rule {
+//    match app-id="Waydroid"
+//    open-on-workspace "android"
+//    open-maximized-to-edges false
+//    open-maximized true
+//    open-floating true
+//    default-floating-position x=20 y=20 relative-to="top-left"
+// }
+
+// Indicate screencasted windows with red colors.
+window-rule {
+    match is-window-cast-target=true
+
+    focus-ring {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
+
+    border {
+        inactive-color "#7d0d2d"
+    }
+
+    shadow {
+        color "#7d0d2d70"
+    }
+
+    tab-indicator {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
+}
+

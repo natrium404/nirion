@@ -13,6 +13,7 @@
 		"modules/tray.jsonc",
 		"modules/privacy.jsonc",
 		"modules/custom/bluetooth.jsonc",
+		"modules/custom/player-icon.jsonc",
 		"modules/custom/media.jsonc",
 		"modules/custom/network.jsonc",
 		"modules/custom/power.jsonc",
@@ -27,6 +28,7 @@
 		"idle_inhibitor",
 		"custom/network",
 		"custom/bluetooth",
+		"custom/player-icon",
 		"custom/media"
 	],
 	"modules-right": [

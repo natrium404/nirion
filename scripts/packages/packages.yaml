@@ -76,6 +76,7 @@ pacman:
   - viewnior
   - vulkan-tools
   - wlogout
+  - xpad
   - yazi
   - zen-browser-bin
 aur:

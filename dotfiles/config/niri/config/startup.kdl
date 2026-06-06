@@ -1,0 +1,39 @@
+// ────────────── Startup Applications ──────────────
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#spawn-sh-at-startup
+
+// spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &" // Polkit
+spawn-sh-at-startup "/usr/bin/lxqt-policykit-agent &" // Polkit
+spawn-sh-at-startup "awww-daemon" // Wallpaper daemon
+// spawn-sh-at-startup "command -v waytrogen >/dev/null 2>&1 || awww img /usr/share/wallpapers/cachyos-wallpapers/Skyscraper.png" // Set wallpaper
+
+// launch swaync - a gtk based notification daemon and control center
+// spawn-sh-at-startup "command -v swaync >/dev/null 2>&1 && pkill mako 2>/dev/null; swaync &"
+// ummm just stop and disable the mako.service then enable and start the swaync.service
+    
+spawn-sh-at-startup "waybar" // Launch waybar
+spawn-sh-at-startup "$HOME/.config/waybar/scripts/player-signal-listener.sh &" // Player event listener
+
+
+// spawn-sh-at-startup "command -v anyrun >/dev/null 2>&1 && anyrun daemon &" // Launch anyrun
+
+// GTK3 and GTK4 THEME
+// spawn-at-startup "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
+// spawn-at-startup "gsettings set org.gnome.desktop.interface gtk-theme 'Colloid-Dark'"
+// spawn-at-startup "gsettings set org.gnome.desktop.interface cursor-theme 'WhiteSur-cursors'"
+
+// Clipboard
+spawn-sh-at-startup "wl-paste --type text --watch cliphist store &"
+spawn-sh-at-startup "wl-paste --type image --watch cliphist store &"
+
+// idle manager
+spawn-sh-at-startup "stasis &"
+
+// syncthing
+spawn-at-startup "syncthing &"
+
+// Ianny - a desktop utility that tracks your computer usage and reminds you to take breaks.
+// spawn-sh-at-startup "command -v ianny >/dev/null 2>&1 && ianny || exit 0"
+
+// run swayosd
+// paru -S swayosd
+// spawn-sh-at-startup "command -v swayosd-server >/dev/null && swayosd-server &"

@@ -1,0 +1,201 @@
+// ────────────── Keybindings ──────────────
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Key-Bindings
+
+binds {
+    MOD+SHIFT+ESCAPE                     { show-hotkey-overlay; }
+
+    // ─── Applications ───
+    MOD+RETURN                          hotkey-overlay-title="Open Terminal: kitty" { spawn-sh "kitty"; }
+    // MOD+SPACE                           hotkey-overlay-title="Open Launcher: anyrun" { spawn-sh "anyrun"; }
+    MOD+SPACE                           hotkey-overlay-title="Open Launcher: rofi" { spawn-sh "rofi -show drun -show-icons"; }
+    // MOD+SPACE                           hotkey-overlay-title="Open Launcher: wofi" { spawn-sh "wofi"; }
+    MOD+SHIFT+SPACE                     hotkey-overlay-title="Open App Launcher: wofi" { spawn-sh "wofi"; }
+    MOD+D                               hotkey-overlay-title="Open Bemenu: bemenu-run" { spawn-sh "bemenu-run"; }
+    MOD+B                               hotkey-overlay-title="Open Default Browser" { spawn-sh "$BROWSER"; }
+    MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
+
+    // Please choose your own file manager
+    MOD+E                               hotkey-overlay-title="File Manager: Thunar" { spawn-sh "thunar"; }
+
+    // ─── Audio Controls ───
+    // Example volume keys mappings for PipeWire & WirePlumber.
+    // The allow-when-locked=true property makes them work even when the session is locked. 
+    XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.04+"; }
+    XF86AudioLowerVolume                allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.04-"; }
+    XF86AudioMute                       allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioNext                       allow-when-locked=true { spawn-sh "playerctl next"; }
+    XF86AudioPause                      allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioPlay                       allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioPrev                       allow-when-locked=true { spawn-sh "playerctl previous"; }
+    
+    // ─── Brightness Controls ───
+    XF86MonBrightnessUp                { spawn-sh "brightnessctl s 5%+"; }
+    XF86MonBrightnessDown              { spawn-sh "brightnessctl s 5%-"; }
+
+    // ─── Brightness Controls ───
+    XF86Calculator {spawn-sh "kitty -T 'Calculator' --class 'kitty-float' -e rink"; }
+
+
+
+    // ─── Window Movement and Focus ───
+    MOD+Q                               { close-window; }
+
+    MOD+LEFT                            { focus-column-left; }
+    MOD+H                               { focus-column-left; }
+    MOD+RIGHT                           { focus-column-right; }
+    MOD+L                               { focus-column-right; }
+    MOD+UP                              { focus-window-up; }
+    MOD+K                               { focus-window-up; }
+    MOD+DOWN                            { focus-window-down; }
+    MOD+J                               { focus-window-down; }
+
+    MOD+CTRL+LEFT                       { move-column-left; }
+    MOD+CTRL+H                          { move-column-left; }
+    MOD+CTRL+RIGHT                      { move-column-right; }
+    MOD+CTRL+L                          { move-column-right; }
+    MOD+CTRL+UP                         { move-window-up; }
+    MOD+CTRL+K                          { move-window-up; }
+    MOD+CTRL+DOWN                       { move-window-down; }
+    MOD+CTRL+J                          { move-window-down; }
+
+    MOD+HOME                            { focus-column-first; }
+    MOD+END                             { focus-column-last; }
+    MOD+CTRL+HOME                       { move-column-to-first; }
+    MOD+CTRL+END                        { move-column-to-last; }
+
+    MOD+SHIFT+LEFT                      { focus-monitor-left; }
+    MOD+SHIFT+RIGHT                     { focus-monitor-right; }
+
+    MOD+SHIFT+H                         { focus-monitor-left; }
+    MOD+SHIFT+L                         { focus-monitor-right; }
+
+    MOD+SHIFT+UP                        { focus-monitor-up; }
+    MOD+SHIFT+DOWN                      { focus-monitor-down; }
+
+    MOD+SHIFT+CTRL+LEFT                 { move-column-to-monitor-left; }
+    MOD+SHIFT+CTRL+RIGHT                { move-column-to-monitor-right; }
+    MOD+SHIFT+CTRL+UP                   { move-column-to-monitor-up; }
+    MOD+SHIFT+CTRL+DOWN                 { move-column-to-monitor-down; }
+
+    MOD+SHIFT+CTRL+H                    { move-column-to-monitor-left; }
+    MOD+SHIFT+CTRL+L                    { move-column-to-monitor-right; }
+
+    // ─── Workspace Switching ───
+    MOD+WHEELSCROLLDOWN                 cooldown-ms=150 { focus-workspace-down; }
+    MOD+WHEELSCROLLUP                   cooldown-ms=150 { focus-workspace-up; }
+    MOD+CTRL+WHEELSCROLLDOWN            cooldown-ms=150 { move-column-to-workspace-down; }
+    MOD+CTRL+WHEELSCROLLUP              cooldown-ms=150 { move-column-to-workspace-up; }
+
+    MOD+SHIFT+J                         cooldown-ms=150 { focus-workspace-down; }
+    MOD+SHIFT+K                         cooldown-ms=150 { focus-workspace-up; }
+    MOD+CTRL+SHIFT+J                    cooldown-ms=150 { move-column-to-workspace-down; }
+    MOD+CTRL+SHIFT+K                    cooldown-ms=150 { move-column-to-workspace-up; }
+
+
+    MOD+WHEELSCROLLRIGHT                { focus-column-right; }
+    MOD+WHEELSCROLLLEFT                 { focus-column-left; }
+    MOD+CTRL+WHEELSCROLLRIGHT           { move-column-right; }
+    MOD+CTRL+WHEELSCROLLLEFT            { move-column-left; }
+
+    MOD+SHIFT+WHEELSCROLLDOWN           { focus-column-right; }
+    MOD+SHIFT+WHEELSCROLLUP             { focus-column-left; }
+    MOD+CTRL+SHIFT+WHEELSCROLLDOWN      { move-column-right; }
+    MOD+CTRL+SHIFT+WHEELSCROLLUP        { move-column-left; }
+
+    MOD+1                               { focus-workspace 1; }
+    MOD+2                               { focus-workspace 2; }
+    MOD+3                               { focus-workspace 3; }
+    MOD+4                               { focus-workspace 4; }
+    MOD+5                               { focus-workspace 5; }
+    MOD+6                               { focus-workspace 6; }
+    MOD+7                               { focus-workspace 7; }
+    MOD+8                               { focus-workspace 8; }
+    MOD+9                               { focus-workspace 9; }
+
+    MOD+CTRL+1                          { move-column-to-workspace 1; }
+    MOD+CTRL+2                          { move-column-to-workspace 2; }
+    MOD+CTRL+3                          { move-column-to-workspace 3; }
+    MOD+CTRL+4                          { move-column-to-workspace 4; }
+    MOD+CTRL+5                          { move-column-to-workspace 5; }
+    MOD+CTRL+6                          { move-column-to-workspace 6; }
+    MOD+CTRL+7                          { move-column-to-workspace 7; }
+    MOD+CTRL+8                          { move-column-to-workspace 8; }
+    MOD+CTRL+9                          { move-column-to-workspace 9; }
+
+    MOD+TAB                             { focus-workspace-previous; }
+
+    // ─── Layout Controls ───
+    MOD+CTRL+F                          { expand-column-to-available-width; }
+    MOD+C                               { center-column; }
+    MOD+CTRL+C                          { center-visible-columns; }
+    MOD+MINUS                           { set-column-width "-10%"; }
+    MOD+EQUAL                           { set-column-width "+10%"; }
+    MOD+SHIFT+MINUS                     { set-window-height "-10%"; }
+    MOD+SHIFT+EQUAL                     { set-window-height "+10%"; }
+
+    // ─── Modes ───
+    MOD+T                               { toggle-window-floating; }
+    MOD+F                               { fullscreen-window; }
+    MOD+W                               { toggle-column-tabbed-display; }
+
+    // ─── Screenshots ───
+  MOD+SHIFT+PRINT hotkey-overlay-title="Screenshot: show UI and selection" {
+        spawn-sh "sh -c 'command -v wl-paste >/dev/null && command -v swappy >/dev/null && old=$(wl-paste -t image/png 2>/dev/null | sha256sum 2>/dev/null); niri msg action screenshot; until [ \"$(wl-paste -t image/png 2>/dev/null | sha256sum 2>/dev/null)\" != \"$old\" ]; do sleep 0.02; done; wl-paste -t image/png | swappy -f - || niri msg action screenshot'"
+    }
+
+    MOD+PRINT hotkey-overlay-title="Screenshot: select output screen" {
+        spawn-sh "sh -c 'command -v wl-paste >/dev/null && command -v swappy >/dev/null && old=$(wl-paste -t image/png 2>/dev/null | sha256sum 2>/dev/null); niri msg action screenshot-screen; until [ \"$(wl-paste -t image/png 2>/dev/null | sha256sum 2>/dev/null)\" != \"$old\" ]; do sleep 0.02; done; wl-paste -t image/png | swappy -f - || niri msg action screenshot-screen'"
+    }
+
+    MOD+CTRL+SHIFT+PRINT hotkey-overlay-title="Screenshot: select available windows" {
+        spawn-sh "sh -c 'command -v wl-paste >/dev/null && command -v swappy >/dev/null && old=$(wl-paste -t image/png 2>/dev/null | sha256sum 2>/dev/null); niri msg action screenshot-window; until [ \"$(wl-paste -t image/png 2>/dev/null | sha256sum 2>/dev/null)\" != \"$old\" ]; do sleep 0.02; done; wl-paste -t image/png | swappy -f - || niri msg action screenshot-window'"
+    }
+
+    // ─── Emergency Escape Key ───
+    // Use this when a fullscreen app blocks your keybinds.
+    // It disables any active keyboard shortcut inhibitor, restoring control.
+    MOD+ESCAPE                          allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    // ─── Exit / Power ───
+    CTRL+ALT+DELETE                     { quit; } // Also quits Niri
+    MOD+SHIFT+P                         { power-off-monitors; } // Turn off screens (useful for OLED or privacy)
+    MOD+O                               repeat=false { toggle-overview; }
+
+    // ─── Windowed (fake/detached) fullscreen ───
+    MOD+CTRL+SHIFT+F { toggle-windowed-fullscreen; }
+
+    // ─── CHAMELEOS ACTIONS // Chameleos - a screen annotation tool ───
+    MOD+F1 { spawn-sh "command -v chamel >/dev/null 2>&1 && chamel toggle"; }
+    MOD+F2 { spawn-sh "command -v chamel >/dev/null 2>&1 && chamel undo"; }
+    MOD+F3 { spawn-sh "command -v chamel >/dev/null 2>&1 && chamel clear"; }
+    MOD+F4 { spawn-sh "pgrep -x chameleos >/dev/null && chamel exit || chameleos &"; }
+
+    // ────── Swaync - Notification center toggle ─────────
+    MOD+SHIFT+N { spawn-sh "command -v swaync-client >/dev/null 2>&1 && swaync-client -t -sw"; }
+
+    // toggle and reload waybar
+    MOD+A       { spawn-sh "pkill -USR1 waybar || waybar"; }
+    MOD+SHIFT+A { spawn-sh "pkill -USR2 waybar || waybar"; }
+
+    // obsirofi
+    // Obsidian vault navigator using Rofi.
+    // https://github.com/natrium404/obsirofi
+    MOD+ALT+O { 
+        spawn-sh "
+            ([[ -x ~/.local/bin/obsirofi ]] && ~/.local/bin/obsirofi) || 
+            (command -v obsirofi >/dev/null 2>&1 && obsirofi) ||
+            notify-send 'Obsirofi' 'Not installed'
+         ";
+    }
+
+    // systofi
+    // A rofi-powered systemd service manager for Linux.
+    // https://github.com/natrium404/systofi
+    MOD+ALT+S {
+        spawn-sh "
+            ([[ -x ~/.local/bin/systofi ]] && ~/.local/bin/systofi) || 
+            (command -v systofi >/dev/null 2>&1 && systofi) ||
+            notify-send 'Systofi' 'Not installed'
+        ";
+    }
+}

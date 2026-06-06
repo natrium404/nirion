@@ -1,0 +1,24 @@
+// ────────────── Cursor Theme ──────────────
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+cursor {
+    xcursor-theme "WhiteSur-cursors"
+    xcursor-size 32
+    hide-after-inactive-ms 3000
+}
+
+xwayland-satellite {
+    // off
+    path "xwayland-satellite"
+}
+
+overview {
+    backdrop-color "#000"
+}
+
+prefer-no-csd // Disable program decorations
+screenshot-path null // Disable screenshot saving

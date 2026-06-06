@@ -51,6 +51,7 @@ LINK_ITEMS=(
 	"config/qt6ct:$USER_CONFIG_DIR/qt6ct"
 	"config/rofi:$USER_CONFIG_DIR/rofi"
 	"config/swappy:$USER_CONFIG_DIR/swappy"
+	"config/swaylock:$USER_CONFIG_DIR/swaylock"
 	"config/waybar:$USER_CONFIG_DIR/waybar"
 	"config/Thunar:$USER_CONFIG_DIR/Thunar"
 	"config/Kvantum:$USER_CONFIG_DIR/Kvantum"

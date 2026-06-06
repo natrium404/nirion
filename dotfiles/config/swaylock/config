@@ -1,0 +1,71 @@
+# Swaylock
+
+image=$HOME/Pictures/wallpapers/super-saiyan-rose-3840x2160-17588.png
+scaling=fill
+color=0a0f1a
+
+# Dark overlay
+effect-blur=7x5
+effect-vignette=0.5:0.5
+
+font=FantasqueSansM Nerd Font Mono
+font-size=22
+
+# Clock — 24h time, date below
+clock
+timestr=%H:%M
+datestr=%a %d %b
+
+# Indicator — hidden until typing, extra interior gap
+indicator-radius=70
+indicator-thickness=5
+
+# ===== Idle =====
+inside-color=00000000
+ring-color=4b5563
+line-color=00000000
+text-color=f9fafb
+
+# ===== Verifying =====
+inside-ver-color=00000000
+ring-ver-color=f59e0b
+line-ver-color=00000000
+text-ver-color=f59e0b
+
+# ===== Wrong =====
+inside-wrong-color=00000000
+ring-wrong-color=ef4444
+line-wrong-color=00000000
+text-wrong-color=ef4444
+
+# ===== Clear =====
+inside-clear-color=00000000
+ring-clear-color=22c55e
+line-clear-color=00000000
+text-clear-color=22c55e
+
+# ===== Key highlights =====
+key-hl-color=64748b
+bs-hl-color=ef4444
+
+# ===== Caps lock =====
+caps-lock-key-hl-color=64748b
+caps-lock-bs-hl-color=ef4444
+inside-caps-lock-color=00000000
+ring-caps-lock-color=4b5563
+line-caps-lock-color=00000000
+text-caps-lock-color=f9fafb
+
+# ===== Layout indicator =====
+layout-bg-color=00000000
+layout-border-color=00000000
+layout-text-color=9ca3af
+
+# ===== Separator — invisible =====
+separator-color=00000000
+
+# ===== Options =====
+show-failed-attempts
+show-keyboard-layout
+daemonize
+ignore-empty-password

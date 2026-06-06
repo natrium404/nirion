@@ -1,0 +1,9 @@
+{
+  "custom/player-icon": {
+    "format": "{}",
+    "tooltip": true,
+    "return-type": "json",
+    "exec": "$HOME/.config/waybar/scripts/player-icon.sh 2> /dev/null",
+    "on-click": "$HOME/.config/waybar/scripts/player-select.sh"
+  }
+}

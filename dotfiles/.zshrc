@@ -43,7 +43,10 @@ fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 eval "$(fzf --zsh)"
 
 # Custom completions
-fpath=("/home/natrium/.zsh/completions" $fpath)
+fpath=("$HOME/.zsh/completions" $fpath)
+
+autoload -Uz compinit
+compinit
 
 # History settings
 setopt HIST_IGNORE_DUPS
@@ -78,3 +81,16 @@ esac
 . "$HOME/.local/bin/env"
 
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+export PNPM_HOME="/home/natrium/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+
+# start direnv
+eval "$(direnv hook zsh)"
+
+# start zoxide -> cd alternative but better
+eval "$(zoxide init zsh)"
+
+
+
+export PATH=$PATH:/home/natrium/.spicetify
